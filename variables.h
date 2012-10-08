@@ -1,3 +1,8 @@
+/*****************************************************************************/
+/* This is the program skeleton for homework 2 in CS 184 by Ravi Ramamoorthi */
+/* Extends HW 1 to deal with shading, more transforms and multiple objects   */
+/*****************************************************************************/
+
 // This is the basic include file for the global variables in the program.  
 // Since all files need access to it, we define EXTERN as either blank or 
 // extern, depending on if included in the main program or not.  
@@ -39,6 +44,14 @@ EXTERN GLfloat lightposn [4*numLights] ; // Light Positions
 EXTERN GLfloat lightcolor[4*numLights] ; // Light Colors
 EXTERN GLfloat lightransf[4*numLights] ; // Lights transformed by modelview
 EXTERN int numused ;                     // How many lights are used 
+
+// Materials (read from file) 
+// With multiple objects, these are colors for each.
+EXTERN GLfloat ambient[4] ; 
+EXTERN GLfloat diffuse[4] ; 
+EXTERN GLfloat specular[4] ; 
+EXTERN GLfloat emission[4] ; 
+EXTERN GLfloat shininess ; 
 
 // For multiple objects, read from a file.  
 const int maxobjects = 10 ; 

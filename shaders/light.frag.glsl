@@ -37,11 +37,52 @@ void main (void)
         
         vec4 finalcolor ; 
 
-        // YOUR CODE FOR HW 2 HERE
-        // A key part is implementation of the fragment shader
+        // Implementation of Fragment Shader
+        
+        finalcolor = ambient + emission;
+        
+        const vec3 eyepos = vec3(0,0,0) ; 
+		vec4 _mypos = gl_ModelViewMatrix * myvertex ; 
+		vec3 mypos = _mypos.xyz / _mypos.w ;
+		vec3 eyedir = normalize(eyepos - mypos) ;
 
-	//Color all pixels blue for now, remove this in your implementation
-        finalcolor = vec4(0,0,1,1); 
+		vec3 normal = normalize((gl_ModelViewMatrixInverseTranspose*vec4(mynormal,0.0)).xyz) ; 
+        
+        //Iterate through all lights
+        for(int i = 0; i < numused; i++){
+        
+            //Decalare variables that will be used for computation
+            vec3 direction;
+            vec3 halfVec;
+            vec4 lightColor = lightcolor[i];
+        
+            //Directional lights
+            if(lightposn[i][3] == 0){
+                vec3 currentPos = lightposn[i].xyz;
+                direction = normalize(currentPos);
+                halfVec = normalize(direction + eyedir);
+            }
+            
+            //Point lights
+            else{
+                vec4 currentPos = lightposn[i];
+                vec3 position = currentPos.xyz / currentPos.w;
+                direction = normalize(position - mypos);
+                halfVec = normalize(direction + eyedir);
+            }
+            
+            //Lambert
+            float nDotL = dot(normal, direction);
+            vec4 lambert = diffuse * lightColor * max(nDotL, 0.0);
+            
+            //Phong
+            float nDotH = dot(normal, halfVec);
+            vec4 phong = specular * lightColor * pow(max(nDotH, 0.0), shininess);
+            
+            vec4 lightContribution = lambert + phong;
+            
+            finalcolor += lightContribution;
+        }
         
         gl_FragColor = finalcolor ; 
         }
