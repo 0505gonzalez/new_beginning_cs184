@@ -14,7 +14,6 @@ using namespace std ;
 // Main variables in the program.  
 #define MAINPROGRAM 
 #include "variables.h" 
-#include "readfile.h" // prototypes for readfile.cpp  
 void display(void) ;  // prototype for display function.  
 
 
@@ -106,8 +105,7 @@ int main(int argc, char* argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutCreateWindow("HW4: A New Beginning");
-	init();
-        readfile(argv[1]) ; 
+	init(); 
 	glutDisplayFunc(display);
 	glutSpecialFunc(specialKey);
 	glutKeyboardFunc(keyboard);
