@@ -82,7 +82,16 @@ void idleFunc ( ) {
 
   distance_eye_to_eyeinit = eye - eyeinit;
   float amount_rot_x = (w/2.0-mousex)*0.003/w*360.0;
-  float amount_rot_y = -(h/2.0-mousey)*0.003/h*360.0;
+  float amount_rot_y = -(h/2.0-mousey)*0.001/h*360.0;
+  
+  /* Don't allow movement in the center of the screen */
+  if(mousex < (w/2.0 + w/5.0) && mousex > (w/2.0 - w/5.0)){
+    amount_rot_x = 0.0;
+  }
+  if(mousey < (h/2.0 + h/3.0) && mousey > (h/2.0 - h/3.0)){
+    amount_rot_y = 0.0;
+  }
+  
   if (elevation + amount_rot_y < min_elevation) {
     amount_rot_y = min_elevation - elevation;
   } else if (elevation + amount_rot_y > max_elevation) {

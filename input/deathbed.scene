@@ -8,7 +8,6 @@ camera 0 -3 0.5 0 0 0 0 0 1 30.0
 light 0.6 0 0.1 0 1 0.5 0 1  
 light 0 -0.6 0.1 1 0.5 0.5 1 1 
 
-# I do a global transform to move this down a little 
 # A good use of matrix stacks and hierarchy 
 pushTransform 
 
@@ -40,16 +39,13 @@ pushTransform
 
 # Floor (white but now with shading)
 # Materials first.  We don't change specular and shininess
-<<<<<<< HEAD
   ambient 0.2 0.2 0.2 1
-=======
   ambient 0.3 0.3 0.3 1
->>>>>>> f760b4fd47e32f5de71c15fbc47eb1b540fb840a
   diffuse 1 1 1 1
   shininess 15
   pushTransform
 	translate 0 0 -0.1
-        scale 50.0 50.0 0.025 
+        scale 10.0 10.0 0.025 
         cube 1.0 
   popTransform
 
@@ -59,7 +55,7 @@ ambient 0.2 0.2 0.2 1
   shininess 15
   pushTransform
   translate 0 0 -0.1
-        scale 50.0 0.025 50.0
+        scale 5.0 0.025 2.0
         cube 1.0 
   popTransform
 
