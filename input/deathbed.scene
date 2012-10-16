@@ -5,8 +5,8 @@ camera 0 -3 0.5 0 0 0 0 0 1 30.0
 
 # lights.  A single point and directional light
 # Note that your program must support up to 10 lights
-light 0.6 0 0.1 0 1 0.5 0 1  
-light 0 -0.6 0.1 1 0.5 0.5 1 1 
+light 0.6 0 0.1 0 0.3 0.3 0.3 1  
+light 0 -0.6 0.1 1 0.3 0.3 0.3 1 
 
 # A good use of matrix stacks and hierarchy 
 pushTransform 
@@ -39,25 +39,97 @@ pushTransform
 
 # Floor (white but now with shading)
 # Materials first.  We don't change specular and shininess
-  ambient 0.2 0.2 0.2 1
   ambient 0.3 0.3 0.3 1
   diffuse 1 1 1 1
-  shininess 15
+  shininess 1
   pushTransform
 	translate 0 0 -0.1
         scale 10.0 10.0 0.025 
         cube 1.0 
   popTransform
 
-#Room, Wall 1
+#wall, edge of scene
 ambient 0.2 0.2 0.2 1
   diffuse 1 1 1 1
   shininess 15
   pushTransform
-  translate 0 0 -0.1
-        scale 5.0 0.025 2.0
+  translate 1.5 5 0.4
+        scale 7.0 0.025 1
         cube 1.0 
   popTransform
+  
+  #Right wall, looking from the door towards the house
+  ambient 0.2 0.2 0.2 1
+  diffuse 1 1 1 1
+  shininess 15
+  pushTransform
+  translate 5 2.75 0.4
+        scale 0.025 4.5 1
+        cube 1.0 
+  popTransform
+  
+  #Left wall, looking from the door towards the house
+  ambient 0.2 0.2 0.2 1
+  diffuse 1 1 1 1
+  shininess 15
+  pushTransform
+  translate -2 3.25 0.4
+        scale 0.025 3.5 1
+        cube 1.0 
+  popTransform
+  
+#front of house 1
+ambient 0.2 0.2 0.2 1
+  diffuse 1 1 1 1
+  shininess 15
+  pushTransform
+  translate 1 1.5 0.4
+        scale 6.0 0.025 1
+        cube 1.0 
+  popTransform
+  
+#Front Walls
+
+#left front wall
+  ambient 0.2 0.2 0.2 1
+  diffuse 1 1 1 1
+  shininess 15
+  pushTransform
+  translate 4 1 0.4
+        scale 0.025 1 1
+        cube 1.0 
+  popTransform
+  
+#Top of door
+ambient 0.2 0.2 0.2 1
+  diffuse 1 1 1 1
+  shininess 15
+  pushTransform
+  translate 4.5 0.5 0.77
+        scale 1.0 0.025 0.26
+        cube 1.0 
+  popTransform
+  
+#Side of door 1
+  ambient 0.2 0.2 0.2 1
+  diffuse 1 1 1 1
+  shininess 15
+  pushTransform
+  translate 4.12 0.5 0.28
+        scale 0.26 0.025 0.75
+        cube 1.0 
+  popTransform
+  
+  #Side of door 2
+  ambient 0.2 0.2 0.2 1
+  diffuse 1 1 1 1
+  shininess 15
+  pushTransform
+  translate 4.88 0.5 0.28
+        scale 0.26 0.025 0.75
+        cube 1.0 
+  popTransform
+
 
 # Character - blue sphere
   ambient 0.5 0.5 0.5 1
