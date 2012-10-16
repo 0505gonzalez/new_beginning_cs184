@@ -33,7 +33,6 @@ void Transform::up(float degrees, vec3& eye, vec3& up) {
     mat3 rotMat = Transform::rotate(-degrees, orth);
     
     eye = eye * rotMat;
-    up = glm::normalize(up * rotMat);
 }
 
 mat4 Transform::lookAt(const vec3 &eye, const vec3 &center, const vec3 &up) {

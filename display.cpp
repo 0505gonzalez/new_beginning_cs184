@@ -92,10 +92,7 @@ void display() {
     mat4 sc(1.0) , tr(1.0), transf(1.0) ;
     sc = Transform::scale(sx,sy,1.0) ;
     tr = Transform::translate(tx,ty,0.0) ;
-    
-    tr = glm::transpose(tr);
-    sc = glm::transpose(sc);
-    transf = transf * mv * tr * sc;
+    transf = transf * mv;
     glLoadMatrixf(&transf[0][0]) ;
         
     for (int i = 0 ; i < numobjects ; i++) {
@@ -123,6 +120,15 @@ void display() {
         else if (obj -> type == teapot) {
             glutSolidTeapot(obj->size) ;
         }
+    }
+
+    if (use_char) {
+      glUniform4fv(ambientcol, 1, character.ambient);
+      glUniform4fv(diffusecol, 1, character.diffuse);
+      glUniform4fv(specularcol, 1, character.specular);
+      glUniform1f(shininesscol, character.shininess);
+      glLoadMatrixf(&(transf * character.transform)[0][0]);
+      glutSolidCube(character.size);
     }
     glutSwapBuffers();
 }

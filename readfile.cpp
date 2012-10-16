@@ -151,12 +151,10 @@ void readfile(const char * filename) {
                         eyeinit = glm::vec3(values[0], values[1], values[2]);
                         upinit = glm::vec3(values[6], values[7], values[8]);
                         center = glm::vec3(values[3], values[4], values[5]);
-                        
-                        upinit = Transform::upvector(upinit, eyeinit);
                         fovy = values[9];
                     }
                 }
-                
+
                 // I've left the code for loading objects in the skeleton, so
                 // you can get a sense of how this works.
                 else if (cmd == "sphere" || cmd == "cube" || cmd == "teapot") {
@@ -182,6 +180,28 @@ void readfile(const char * filename) {
                         ++numobjects ;
                     }
                 }
+
+		// TEMPORARY: I need an object to play around with.
+		// Input: character <size> --- creates a cube of size "size".
+		else if (cmd == "character") {
+		    validinput = readvals(s,3,values);
+		    if (validinput) {
+		      object * obj = &(character);
+		      obj -> size = 0.2;
+		      for (i = 0; i < 4; i++) {
+			(obj -> ambient)[i] = ambient[i] ;
+			(obj -> diffuse)[i] = diffuse[i] ;
+			(obj -> specular)[i] = specular[i] ;
+			(obj -> emission)[i] = emission[i] ;
+		      }
+		      obj -> shininess = shininess;
+		      obj -> transform = transfstack.top();
+		      obj -> type = cube;
+		      use_char = true;
+		      char_direction = vec3(values[0], values[1], values[2]);
+		      char_position = vec3(0,0,0); // for simplicity, character starts at origin
+		    }
+		}
                 
                 else if (cmd == "translate") {
                     validinput = readvals(s,3,values) ;

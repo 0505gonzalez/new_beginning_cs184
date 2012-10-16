@@ -1,0 +1,52 @@
+# Set the scene size and camera location 
+size 1000 1000
+camera 0 -2 2 0 0 0 0 0 1 30.0
+
+# lights.  A single point and directional light
+# Note that your program must support up to 10 lights
+light 0.6 0 0.1 0 1 0.5 0 1  
+light 0 -0.6 0.1 1 0.5 0.5 1 1 
+
+# I do a global transform to move this down a little 
+# A good use of matrix stacks and hierarchy 
+pushTransform 
+
+# Teapot
+# Materials first 
+  ambient 0.2 0.2 0.2 1 
+  diffuse 0.5 0.5 0.5 1
+  specular 1 1 1 1
+  shininess 100
+# Do all object transforms within a push/pop
+  pushTransform
+	translate 0 0 -0.02
+        rotate 1 0 0 90 
+	translate 0 0 0
+        teapot 0.15
+  popTransform
+  pushTransform
+	translate 0 0 -0.02
+	rotate 1 0 0 90
+	translate 2 0 0
+	teapot 0.15
+  popTransform
+
+# Floor (white but now with shading)
+# Materials first.  We don't change specular and shininess
+  ambient 0 0 0 1
+  diffuse 1 1 1 1
+  pushTransform
+	translate 0 0 -0.1
+        scale 50.0 50.0 0.025 
+        cube 1.0 
+  popTransform
+
+# Character - blue sphere
+  ambient 0.2 0.2 0.2 1
+  diffuse 0.0 0.0 0.5 1
+  pushTransform
+       	character 0 1 0
+  popTransform
+  
+  
+popTransform
