@@ -14,9 +14,9 @@ LDFLAGS = -L/usr/X11R6/lib -L/sw/lib -L/usr/sww/lib \
 endif
 
 RM = /bin/rm -f 
-all: transform
-transform: main.o shaders.o Transform.o readfile.o display.o variables.h readfile.h shaders.h Transform.h grader.o UCB/grader.h
-	$(CC) $(CFLAGS) -o transforms shaders.o main.o Transform.o readfile.o display.o grader.o $(INCFLAGS) $(LDFLAGS) 
+all: new_beginning
+new_beginning: main.o shaders.o Transform.o readfile.o display.o variables.h readfile.h shaders.h Transform.h grader.o UCB/grader.h
+	$(CC) $(CFLAGS) -o new_beginning shaders.o main.o Transform.o readfile.o display.o grader.o $(INCFLAGS) $(LDFLAGS) 
 main.o: main.cpp shaders.h Transform.h variables.h
 	$(CC) $(CFLAGS) $(INCFLAGS) -c main.cpp
 shaders.o: shaders.cpp shaders.h
@@ -30,7 +30,7 @@ Transform.o: Transform.cpp Transform.h
 grader.o: UCB/grader.cpp UCB/grader.h
 	$(CC) $(CFLAGS) $(INCFLAGS) -c UCB/grader.cpp
 clean: 
-	$(RM) *.o transforms *.png
+	$(RM) *.o new_beginning *.png
 
 
  

@@ -133,7 +133,7 @@ void init() {
   shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
   
   //Init scene names
-  startSceneFile = string("input/whole_scene.txt");
+  startSceneFile = string("input/deathbed.scene");
 }
 
 int main (int argc, char* argv[]) {
