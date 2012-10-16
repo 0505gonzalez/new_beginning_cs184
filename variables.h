@@ -84,5 +84,8 @@ EXTERN GLuint ambientcol ;
 EXTERN GLuint diffusecol ; 
 EXTERN GLuint specularcol ; 
 EXTERN GLuint emissioncol ; 
-EXTERN GLuint shininesscol ; 
+EXTERN GLuint shininesscol ;
+
+//Scene variables
+static string startSceneFile("");
 

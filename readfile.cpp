@@ -34,7 +34,6 @@ using namespace std ;
 #include "variables.h"
 #include "readfile.h"
 
-
 // The function below applies the appropriate transform to a 4-vector
 void matransform(stack<mat4> &transfstack, GLfloat * values) {
     mat4 transform = transfstack.top() ;
@@ -273,4 +272,23 @@ void readfile(const char * filename) {
         throw 2 ; 
     }
     
+}
+
+
+/* Loads a scene file */
+void loadScene(string sceneFile){
+    char * fileName;
+    fileName = new char[sceneFile.size() + 1];
+    fileName[sceneFile.size()] = 0;
+    memcpy(fileName,sceneFile.c_str(),sceneFile.size());
+    
+    clearSceneVars();
+    
+    readfile(fileName);
+}
+
+/* Empties scene variables */
+void clearSceneVars(){
+  numused = 0;
+  numobjects = 0;
 }

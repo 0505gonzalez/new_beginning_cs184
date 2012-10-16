@@ -1,6 +1,6 @@
 # Set the scene size and camera location 
 size 1000 1000
-camera 0 -2 2 0 0 0 0 0 1 30.0
+camera 0 -2 0.5 0 0 0 0 0 1 30.0
 
 # lights.  A single point and directional light
 # Note that your program must support up to 10 lights
@@ -39,11 +39,22 @@ pushTransform
 
 # Floor (white but now with shading)
 # Materials first.  We don't change specular and shininess
-  ambient 0 0 0 1
+  ambient 0.2 0.2 0.2 1
   diffuse 1 1 1 1
+  shininess 15
   pushTransform
 	translate 0 0 -0.1
         scale 50.0 50.0 0.025 
+        cube 1.0 
+  popTransform
+
+#Room, Wall 1
+ambient 0.2 0.2 0.2 1
+  diffuse 1 1 1 1
+  shininess 15
+  pushTransform
+  translate 0 0 -0.1
+        scale 50.0 0.025 50.0
         cube 1.0 
   popTransform
 

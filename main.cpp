@@ -9,6 +9,7 @@
 #include "Transform.h"
 #include <FreeImage.h>
 #include <math.h>
+#include "Character.cpp"
 
 using namespace std;
 
@@ -122,7 +123,10 @@ void init() {
   diffusecol = glGetUniformLocation(shaderprogram,"diffuse") ;       
   specularcol = glGetUniformLocation(shaderprogram,"specular") ;       
   emissioncol = glGetUniformLocation(shaderprogram,"emission") ;       
-  shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;       
+  shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
+  
+  //Init scene names
+  startSceneFile = string("input/whole_scene.txt");
 }
 
 int main (int argc, char* argv[]) {
@@ -131,7 +135,7 @@ int main (int argc, char* argv[]) {
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
   glutCreateWindow("HW4: A New Beginning");
   init();
-  readfile(argv[1]);
+  loadScene(startSceneFile);
   glutDisplayFunc(display);
   glutKeyboardFunc(keyboard);
   glutReshapeFunc(reshape);
