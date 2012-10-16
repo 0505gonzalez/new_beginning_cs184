@@ -45,11 +45,7 @@ void keyboard(unsigned char key, int x, int y) {
 
 void idleFunc ( ) {
   vec3 c_move_dir = 0.03f*glm::normalize(vec3(char_direction));
-  float amount_rot = 3.0;
 
-  if (key_states['+']) {
-
-  }
   if (key_states['h']) {
     printHelp();
   }
@@ -69,19 +65,34 @@ void idleFunc ( ) {
     char_position -= c_move_dir;
   }
   if (key_states['a']) {
-    distance_eye_to_eyeinit = eye - eyeinit;
-    character.transform = glm::transpose(Transform::translate(char_position.x, char_position.y, char_position.z))*glm::transpose(mat4(Transform::rotate(amount_rot, up)))*glm::transpose(Transform::translate(-char_position.x, -char_position.y, -char_position.z))*character.transform;
-    Transform::left(amount_rot, eyeinit, up);
-    eye = eyeinit + distance_eye_to_eyeinit;
-    Transform::left(amount_rot, char_direction, up);
+    vec3 left_vec = vec3(-c_move_dir.y, c_move_dir.x, c_move_dir.z);
+    character.transform = glm::transpose(Transform::translate(-c_move_dir.y, c_move_dir.x, c_move_dir.z))*character.transform;
+    eye += left_vec;
+    center += left_vec;
+    char_position += left_vec;
   }
   if (key_states['d']) {
-    distance_eye_to_eyeinit = eye - eyeinit;
-      character.transform = glm::transpose(Transform::translate(char_position.x, char_position.y, char_position.z))*glm::transpose(mat4(Transform::rotate(-amount_rot, up)))*glm::transpose(Transform::translate(-char_position.x, -char_position.y, -char_position.z))*character.transform;
-      Transform::left(-amount_rot, eyeinit, up);
-      eye = eyeinit + distance_eye_to_eyeinit;
-      Transform::left(-amount_rot, char_direction, up);
+    vec3 right_vec = vec3(c_move_dir.y, -c_move_dir.x, c_move_dir.z);
+    character.transform = glm::transpose(Transform::translate(c_move_dir.y, -c_move_dir.x, c_move_dir.z))*character.transform;
+    eye += right_vec;
+    center += right_vec;
+    char_position += right_vec;
   }
+
+  distance_eye_to_eyeinit = eye - eyeinit;
+  float amount_rot_x = (w/2.0-mousex)*0.003/w*360.0;
+  float amount_rot_y = -(h/2.0-mousey)*0.003/h*360.0;
+  if (elevation + amount_rot_y < min_elevation) {
+    amount_rot_y = min_elevation - elevation;
+  } else if (elevation + amount_rot_y > max_elevation) {
+    amount_rot_y = max_elevation - elevation;
+  }
+  elevation += amount_rot_y;
+  Transform::left(amount_rot_x, eyeinit, up);
+  Transform::left(amount_rot_x, char_direction, up);
+  character.transform = glm::transpose(Transform::translate(char_position.x, char_position.y, char_position.z))*glm::transpose(mat4(Transform::rotate(amount_rot_x, up)))*glm::transpose(Transform::translate(-char_position.x, -char_position.y, -char_position.z))*character.transform;
+  Transform::up(amount_rot_y, eyeinit, up);
+  eye = eyeinit + distance_eye_to_eyeinit;
   glutPostRedisplay();
 }
 
@@ -90,23 +101,19 @@ void keyUp (unsigned char key, int x, int y) {
   key_states[key] = false;
 }
 
-void mouse(int button, int state, int x, int y) {
-  if (state == GLUT_DOWN) {
-    if (button == GLUT_LEFT_BUTTON) {
-      mousex = x;
-      mousey = y;
-    }
-  }
-  glutPostRedisplay();
-}
-
-void mousedrag(int x, int y) {
-  distance_eye_to_eyeinit = eye - eyeinit;
-  Transform::up((mousey-y)*1.0/h*360.0, eyeinit, up);
-  eye = eyeinit + distance_eye_to_eyeinit;
+void mouse(int x, int y) {
   mousex = x;
   mousey = y;
-  glutPostRedisplay();
+  if (mousex < 0) {
+    mousex = 0;
+  } else if (mousex > w) {
+    mousex = w;
+  }
+  if (mousey < 0) {
+    mousey = 0;
+  } else if (mousey > h) {
+    mousey = h;
+  }
 }
 
 void init() {
@@ -135,11 +142,10 @@ int main (int argc, char* argv[]) {
   glutDisplayFunc(display);
   glutKeyboardFunc(keyboard);
   glutReshapeFunc(reshape);
-  glutMouseFunc(mouse);
-  glutMotionFunc(mousedrag);
   glutKeyboardUpFunc(keyUp);
   glutReshapeWindow(w,h);
   glutIdleFunc(idleFunc);
+  glutPassiveMotionFunc(mouse);
   for (int i = 0; i < 256; i++) {
     key_states[i] = false;
   }

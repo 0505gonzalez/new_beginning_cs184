@@ -152,8 +152,23 @@ void readfile(const char * filename) {
                         upinit = glm::vec3(values[6], values[7], values[8]);
                         center = glm::vec3(values[3], values[4], values[5]);
                         fovy = values[9];
+			elevation = glm::asin(values[2] / glm::sqrt(values[0]*values[0] + values[1]*values[1] + values[2]*values[2]))*180.0/pi;
+			if (elevation < min_elevation || elevation > max_elevation) {
+			  cerr << "elevation is not between " << min_elevation << " and " << max_elevation << "degrees. Elevation: " << elevation << endl;
+			  exit(1);
+			}
                     }
                 }
+
+		// elevation <min_elev> <max_elev> specifies the range of rotating up. Must call elevation in the beginning. The two arguments are specified in degrees relative to the xy plane.
+		else if (cmd == "elevation") {
+                  validinput = readvals(s,2,values);
+                  if (validinput) {
+                    min_elevation = values[0];
+                    max_elevation = values[1];
+                  }
+                }
+		
 
                 // I've left the code for loading objects in the skeleton, so
                 // you can get a sense of how this works.
