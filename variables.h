@@ -83,4 +83,5 @@ EXTERN GLuint shininesscol ;
 
 //Scene variables
 static string startSceneFile("");
+EXTERN GLfloat backgroundColor[4];
 

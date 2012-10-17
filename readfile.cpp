@@ -34,6 +34,8 @@ using namespace std ;
 #include "variables.h"
 #include "readfile.h"
 
+int lineCount = 0;
+
 // The function below applies the appropriate transform to a 4-vector
 void matransform(stack<mat4> &transfstack, GLfloat * values) {
     mat4 transform = transfstack.top() ;
@@ -54,7 +56,7 @@ bool readvals(stringstream &s, const int numvals, GLfloat * values) {
     for (int i = 0 ; i < numvals ; i++) {
         s >> values[i] ;
         if (s.fail()) {
-            cout << "Failed reading value " << i << " will skip\n" ;
+            cout << "Line " << lineCount << ": Failed reading value " << i << " will skip\n" ;
             return false ;
         }
     }
@@ -74,6 +76,7 @@ void readfile(const char * filename) {
         
         getline (in, str) ;
         while (in) {
+	    lineCount++;
             if ((str.find_first_not_of(" \t\r\n") != string::npos) && (str[0] != '#')) {
                 // Ruled out comment and blank lines
                 
@@ -111,6 +114,15 @@ void readfile(const char * filename) {
                 // the skeleton, also as a hint of how to do the more complex ones.
                 // Note that no transforms/stacks are applied to the colors.
                 
+		else if (cmd == "backgroundColor") {
+                    validinput = readvals(s, 4, values) ; // colors
+                    if (validinput)
+                        for (i = 0 ; i < 4 ; i++) backgroundColor[i] = values[i] ;
+	
+		    std::cout << values[0] << std::endl;
+		    std::cout << backgroundColor[0] << std::endl;
+                }
+		
                 else if (cmd == "ambient") {
                     validinput = readvals(s, 4, values) ; // colors
                     if (validinput)
