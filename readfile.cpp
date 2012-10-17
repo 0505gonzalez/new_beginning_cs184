@@ -118,9 +118,6 @@ void readfile(const char * filename) {
                     validinput = readvals(s, 4, values) ; // colors
                     if (validinput)
                         for (i = 0 ; i < 4 ; i++) backgroundColor[i] = values[i] ;
-	
-		    std::cout << values[0] << std::endl;
-		    std::cout << backgroundColor[0] << std::endl;
                 }
 		
                 else if (cmd == "ambient") {
