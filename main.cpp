@@ -26,7 +26,7 @@ void reshape(int width, int height) {
   w = width;
   h = height;
   mat4 mv; // for lookat
-  float aspect = w / (float) h, zNear = 0.0001, zFar = 99.9999 ;
+  float aspect = w / (float) h, zNear = 0.001, zFar = 99.99 ;
   glMatrixMode(GL_PROJECTION);
   mv = Transform::perspective(fovy,aspect,zNear,zFar);
   mv = glm::transpose(mv);
