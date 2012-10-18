@@ -107,6 +107,10 @@ void display() {
             glLoadMatrixf(&(transf * obj -> transform)[0][0]);
             
         }
+	
+	if(i == 0){
+	    glBindTexture( GL_TEXTURE_2D, dirt );
+	}
         
         // Actually draw the object
         // We provide the actual glut drawing functions for you.

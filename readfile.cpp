@@ -316,3 +316,8 @@ void clearSceneVars(){
   numused = 0;
   numobjects = 0;
 }
+
+/* Sets all usable textures */
+void declareTextures(){
+    glGenTextures( 1, &dirt );
+}

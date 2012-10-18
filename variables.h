@@ -85,3 +85,6 @@ EXTERN GLuint shininesscol ;
 static string startSceneFile("");
 EXTERN GLfloat backgroundColor[4];
 
+//Textures
+EXTERN GLuint dirt;
+
