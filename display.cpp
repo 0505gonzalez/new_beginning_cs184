@@ -37,7 +37,6 @@ void transformvec (const GLfloat input[4], GLfloat output[4]) {
 }
 
 void display() {
-	std::cout << backgroundColor[0] << std::endl;
 	glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
