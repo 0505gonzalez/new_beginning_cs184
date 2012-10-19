@@ -20,36 +20,39 @@ pushTransform
 	# a global translate and rotate for trees
 	translate 0 0 -0.03
 	rotate 1 0 0 90
+	ambient 0.3 0.7 0.7
 	# Many, many trees...
-  	pushTransform
-		translate 0 0 -0.02
-        	rotate 1 0 0 90 
+  	pushTransform 
 		translate 0 0 0
 		scale 0.15 0.15 0.15
         	tree
   	popTransform
   	pushTransform
-		translate 0 0 -0.02
-		rotate 1 0 0 90
 		translate 2 0 0
 		scale 0.1 0.1 0.1
+		rotate 0 1 0 195
 		tree
   	popTransform
   	pushTransform
-		ambient 0.2 0.8 0.8 1
-		diffuse 0.5 1 1 1
-		translate 0 0 -0.02
-		rotate 1 0 0 90
-		translate -2 0 0
-		scale 0.2 0.2 0.2
+		translate -1.5 0 0
+		scale 0.12 0.12 0.12
+		rotate 0 1 0 45
 		tree
   	popTransform
+	pushTransform
+		translate 0.5 0 3
+		scale 0.11 0.11 0.15
+		rotate 0 1 0 275
+		tree
+	popTransform
+	pushTransform translate 
   popTransform
 
 # Floor (white but now with shading)
 # Materials first.  We don't change specular and shininess
   ambient 0.3 0.3 0.3 1
-  diffuse 1 1 1 1
+  diffuse 0.3 0.3 0.3 1
+  specular 0.5 0.5 0.5 1
   shininess 15
   pushTransform
 	translate 0 0 -0.1
