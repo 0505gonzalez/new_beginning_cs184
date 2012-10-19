@@ -18,12 +18,16 @@
 using namespace std ;
 #include "variables.h"
 #include "readfile.h"
+#include "ModelObj.h"
 
 // New helper transformation function to transform vector by modelview
 // May be better done using newer glm functionality.
 // Provided for your convenience.  Use is optional.
 // Some of you may want to use the more modern routines in readfile.cpp
 // that can also be used.
+
+ModelObj list_of_models [max_obj_models]; // List containing all the models.
+int size_of_list_models = 0;
 
 void transformvec (const GLfloat input[4], GLfloat output[4]) {
     GLfloat modelview[16] ; // in column major order
@@ -40,7 +44,6 @@ void display() {
 	glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    
     // I'm including the basic matrix setup for model view to
     // give some sense of how this works.
     
@@ -54,6 +57,7 @@ void display() {
     }
     glLoadMatrixf(&mv[0][0]) ;
     
+
     // Set Light and Material properties for the teapot
     // Lights are transformed by current modelview matrix.
     // The shader can't do this globally.
@@ -119,7 +123,41 @@ void display() {
         }
         else if (obj -> type == teapot) {
             glutSolidTeapot(obj->size) ;
-        }
+        } else {
+	  ModelObj * object = new ModelObj();
+	  for (int i = 0; i < size_of_list_models; i++) {
+	    if (list_of_models[i].name != obj->name) {
+	      if (!object->loadObj(obj->file_path, obj->shape_sides, obj->name)) {
+		exit(1);
+	      }
+	      list_of_models[size_of_list_models] = *object;
+	      size_of_list_models++;
+	    } else {
+	      *object = list_of_models[i];
+	    }
+	  }
+
+	  // initial setup - must put in array because it won't be in array from the start!
+	  if (size_of_list_models == 0) {
+	    if (!object->loadObj(obj->file_path, obj->shape_sides, obj->name)) {
+	      exit(1);
+	    }
+	    list_of_models[size_of_list_models] = *object;
+	    size_of_list_models++;
+	  }
+
+	  glEnableClientState(GL_NORMAL_ARRAY);
+	  glEnableClientState(GL_VERTEX_ARRAY);
+	  glNormalPointer(GL_FLOAT, 0, object->normals);
+	  glVertexPointer(3, GL_FLOAT, 0, object->vertices);
+	  if (object->shape = 4) {
+	    glDrawElements(GL_QUADS, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
+	  } else if (object -> shape = 3) {
+	    glDrawElements(GL_TRIANGLES, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
+	  }
+	  glDisableClientState(GL_VERTEX_ARRAY);
+	  glDisableClientState(GL_NORMAL_ARRAY);
+	}
     }
 
     if (use_char) {

@@ -33,7 +33,7 @@ EXTERN float max_elevation;
 EXTERN bool useGlu; // Toggle use of "official" opengl/glm transform vs user 
 EXTERN GLuint vertexshader, fragmentshader, shaderprogram ; // shaders
 static enum {view, translate, scale} transop ; // which operation to transform 
-enum shape {cube, sphere, teapot} ;
+enum shape {cube, sphere, teapot, modelobj} ;
 EXTERN float sx, sy ; // the scale in x and y 
 EXTERN float tx, ty ; // the translation in x and y
 
@@ -64,6 +64,9 @@ EXTERN struct object {
   GLfloat emission[4] ; 
   GLfloat shininess ;
   mat4 transform ; 
+  std::string name; // only necessary for .obj files.
+  std::string file_path; // only necessary for .obj files.
+  int shape_sides; // either 3 for tri or 4 for quad.
 } objects[maxobjects] ;
 EXTERN object character; 
 EXTERN bool use_char;
@@ -85,3 +88,6 @@ EXTERN GLuint shininesscol ;
 static string startSceneFile("");
 EXTERN GLfloat backgroundColor[4];
 
+//Obj files - since only few models on screen (20 MB limit), we can only have a few .obj models (textures are expensive). Hence, an array is suitable to store .obj vertices/texture coords/normals.
+const int max_obj_models = 10; // per scene.
+EXTERN int num_obj_models;

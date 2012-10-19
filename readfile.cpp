@@ -204,6 +204,33 @@ void readfile(const char * filename) {
                     }
                 }
 
+		else if (cmd == "tree") {
+		  if (numobjects == maxobjects) // No more objects
+		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
+		  else {
+		    validinput = readvals(s, 0, values);
+		    if(validinput) {
+		      object *obj = &(objects[numobjects]);
+		      for (i = 0; i < 4; i++) {
+			(obj -> ambient)[i] = ambient[i];
+			(obj -> diffuse)[i] = diffuse[i];
+			(obj -> specular)[i] = specular[i];
+			(obj -> emission)[i] = specular[i];
+		      }
+		      obj -> type = modelobj;
+		      obj -> shininess = shininess;
+		      obj -> transform = transfstack.top();
+		      if (cmd == "tree") {
+			obj -> name = ((std::string)("tree"));
+			obj -> file_path = ((std::string)("images/tree/tree4b_lod2.obj"));
+			obj -> shape_sides = 4;
+		      }
+		      ++numobjects;
+		      ++num_obj_models;
+		    }
+		  }
+		}
+
 		// TEMPORARY: I need an object to play around with.
 		// Input: character <size> --- creates a cube of size "size".
 		else if (cmd == "character") {
@@ -225,7 +252,7 @@ void readfile(const char * filename) {
 		      char_position = vec3(0,0,0); // for simplicity, character starts at origin
 		    }
 		}
-                
+
                 else if (cmd == "translate") {
                     validinput = readvals(s,3,values) ;
                     if (validinput) {

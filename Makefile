@@ -15,8 +15,8 @@ endif
 
 RM = /bin/rm -f 
 all: new_beginning
-new_beginning: main.o shaders.o Transform.o readfile.o display.o variables.h readfile.h shaders.h Transform.h grader.o UCB/grader.h
-	$(CC) $(CFLAGS) -o new_beginning shaders.o main.o Transform.o readfile.o display.o grader.o $(INCFLAGS) $(LDFLAGS) 
+new_beginning: main.o shaders.o Transform.o readfile.o display.o variables.h readfile.h shaders.h Transform.h grader.o UCB/grader.h ModelObj.o ModelObj.h
+	$(CC) $(CFLAGS) -o new_beginning shaders.o main.o Transform.o readfile.o display.o grader.o ModelObj.o $(INCFLAGS) $(LDFLAGS) 
 main.o: main.cpp shaders.h Transform.h variables.h
 	$(CC) $(CFLAGS) $(INCFLAGS) -c main.cpp
 shaders.o: shaders.cpp shaders.h
@@ -29,6 +29,8 @@ Transform.o: Transform.cpp Transform.h
 	$(CC) $(CFLAGS) $(INCFLAGS) -c Transform.cpp  
 grader.o: UCB/grader.cpp UCB/grader.h
 	$(CC) $(CFLAGS) $(INCFLAGS) -c UCB/grader.cpp
+ModelObj: ModelObj.cpp ModelObj.h
+	$(CC) $(CFLAGS) $(INCFLAGS) -c ModelObj.cpp
 clean: 
 	$(RM) *.o new_beginning *.png
 

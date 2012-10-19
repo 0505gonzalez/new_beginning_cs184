@@ -17,6 +17,7 @@ using namespace std;
 #define MAINPROGRAM 
 #include "variables.h" 
 #include "readfile.h" // prototypes for readfile.cpp  
+#include "ModelObj.h"
 
 bool * key_states = new bool[256];
 
@@ -142,10 +143,10 @@ void init() {
   shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
   
   //Init scene names
-  startSceneFile = string("input/deathbed.scene");
+  startSceneFile = string("input/paradise.scene");
   
   glEnable (GL_BLEND);
-glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 int main (int argc, char* argv[]) {
