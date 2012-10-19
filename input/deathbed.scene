@@ -5,7 +5,7 @@ camera 0 -3 0.5 0 0 0 0 0 1 30.0
 
 # lights.  A single point and directional light
 # Note that your program must support up to 10 lights
-light 0 -5 25 0 0.05 0.05 0.05 1  
+light 0 -5 25 0 0.08 0.08 0.08 1  
 light 0.3 -3.25 0 1 0.12 0.09 0.03 1
 
 backgroundColor 0.17 0.16 0.27 1
@@ -18,13 +18,13 @@ specular 1 1 1 1
 
 # Floor (white but now with shading)
 # Materials first.  We don't change specular and shininess
-  specular 0 0 0 1
+  specular 0.5 0.5 0.5 1
   ambient 0.3 0.3 0.3 1
   diffuse 1 1 1 1
   shininess 1
   pushTransform
 	translate 0 0 -0.1
-        scale 30.0 30.0 0.025 
+        scale 50.0 50.0 0.025 
         cube 1.0 
   popTransform
 

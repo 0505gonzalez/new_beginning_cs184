@@ -88,9 +88,12 @@ EXTERN GLuint shininesscol ;
 static string startSceneFile("");
 EXTERN GLfloat backgroundColor[4];
 
+<<<<<<< HEAD
 //Obj files - since only few models on screen (20 MB limit), we can only have a few .obj models (textures are expensive). Hence, an array is suitable to store .obj vertices/texture coords/normals.
 const int max_obj_models = 10; // per scene.
 EXTERN int num_obj_models;
-
+=======
 //Textures
 EXTERN GLuint dirt;
+
+>>>>>>> a707a5c5dd35d91d739b971baae8aa794c5290ac
