@@ -143,7 +143,7 @@ void init() {
   shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
   
   //Init scene names
-  startSceneFile = string("input/paradise.scene");
+  startSceneFile = string("input/deathbed.scene");
   
   glEnable (GL_BLEND);
   glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
