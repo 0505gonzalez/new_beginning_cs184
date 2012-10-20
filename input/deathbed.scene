@@ -448,6 +448,25 @@ ambient 0.2 0.2 0.2 1
 	popTransform
   popTransform
   
+  # Modeled furniture
+# Materials first 
+  ambient 0.5 0.5 0.5 1 
+  diffuse 0.5 0.5 0.5 1
+  specular 1 1 1 1
+  shininess 10
+  pushTransform
+	# a global translate and rotate for trees
+	translate 0 -1 -0.03
+	rotate 90 0 0 1
+	# Many, many trees...
+  	pushTransform
+		translate 0 0 0
+        	rotate 1 0 0 90 
+		translate 0 0 0
+		scale 0.18 0.18 0.18
+        	couch
+  	popTransform
+  popTransform
 
 # Character - blue sphere
   ambient 0.5 0.5 0.5 1
