@@ -56,7 +56,6 @@ void display() {
         mv = glm::transpose(mv) ; // accounting for row major
     }
     glLoadMatrixf(&mv[0][0]) ;
-    
 
     // Set Light and Material properties for the teapot
     // Lights are transformed by current modelview matrix.
@@ -90,8 +89,6 @@ void display() {
     else glUniform1i(enablelighting,false) ;
     
     
-    
-    
     // Transformations for objects, involving translation and scaling
     mat4 sc(1.0) , tr(1.0), transf(1.0) ;
     sc = Transform::scale(sx,sy,1.0) ;
@@ -100,8 +97,7 @@ void display() {
     glLoadMatrixf(&transf[0][0]) ;
         
     for (int i = 0 ; i < numobjects ; i++) {
-        object * obj = &(objects[i]) ;
-        
+        object * obj = &(objects[i]) ;        
         {
             glUniform4fv(ambientcol,1,obj -> ambient);
             glUniform4fv(diffusecol,1,obj -> diffuse);
@@ -127,7 +123,10 @@ void display() {
         }
         else if (obj -> type == teapot) {
             glutSolidTeapot(obj->size) ;
-        } else {
+	} else if (obj -> type == cylinder) {
+	  GLUquadricObj *quadric = gluNewQuadric();
+	  gluCylinder(quadric, obj->radius, obj->radius, obj->height, 100, 100);
+	} else if (obj -> type == modelobj) {
 	  ModelObj * object = new ModelObj();
 	  bool found_flag = false;
 	  for (int i = 0; i < size_of_list_models; i++) {
@@ -148,9 +147,9 @@ void display() {
 	  glEnableClientState(GL_VERTEX_ARRAY);
 	  glNormalPointer(GL_FLOAT, 0, object->normals);
 	  glVertexPointer(3, GL_FLOAT, 0, object->vertices);
-	  if (object->shape = 4) {
+	  if (object->shape == 4) {
 	    glDrawElements(GL_QUADS, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
-	  } else if (object -> shape = 3) {
+	  } else if (object -> shape == 3) {
 	    glDrawElements(GL_TRIANGLES, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
 	  }
 	  glDisableClientState(GL_VERTEX_ARRAY);

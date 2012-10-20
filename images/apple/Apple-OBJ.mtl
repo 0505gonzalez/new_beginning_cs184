@@ -1,0 +1,44 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 22.07.2012 14:01:03
+
+newmtl 04___Default
+	Ns 10.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Documents and Settings\Mohsen\My Documents\My Pictures\apple6.jpg
+	map_Kd C:\Documents and Settings\Mohsen\My Documents\My Pictures\apple6.jpg
+	map_bump C:\Documents and Settings\Mohsen\My Documents\My Pictures\apple6-1.jpg
+	bump C:\Documents and Settings\Mohsen\My Documents\My Pictures\apple6-1.jpg
+
+newmtl wire_177088026
+	Ns 32
+	d 1
+	Tr 0
+	Tf 1 1 1
+	illum 2
+	Ka 0.6941 0.3451 0.1020
+	Kd 0.6941 0.3451 0.1020
+	Ks 0.3500 0.3500 0.3500
+
+newmtl 09___Default
+	Ns 60.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.3600 0.3600 0.3600
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Documents and Settings\Mohsen\My Documents\My Pictures\Apple_Texture_by_AGF81.jpg
+	map_Kd C:\Documents and Settings\Mohsen\My Documents\My Pictures\Apple_Texture_by_AGF81.jpg
+	map_bump C:\Documents and Settings\Mohsen\My Documents\My Pictures\Copy of Apple_Texture_by_AGF81.jpg
+	bump C:\Documents and Settings\Mohsen\My Documents\My Pictures\Copy of Apple_Texture_by_AGF81.jpg

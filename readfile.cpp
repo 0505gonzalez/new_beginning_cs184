@@ -180,7 +180,7 @@ void readfile(const char * filename) {
 
                 // I've left the code for loading objects in the skeleton, so
                 // you can get a sense of how this works.
-                else if (cmd == "sphere" || cmd == "cube" || cmd == "teapot") {
+                else if (cmd == "sphere" || cmd == "cube" || cmd == "teapot" || cmd == "cylinder") {
                     if (numobjects == maxobjects) // No more objects
                         cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
                     else {
@@ -199,12 +199,25 @@ void readfile(const char * filename) {
                             if (cmd == "sphere") obj -> type = sphere ;
                             else if (cmd == "cube") obj -> type = cube ;
                             else if (cmd == "teapot") obj -> type = teapot ;
+			    else if (cmd == "cylinder") {
+			      validinput = readvals(s,1,values);
+			      if (validinput) {
+				obj->type = cylinder;
+				obj->height = obj->size;
+				obj->radius = values[0];
+			      }
+			    }
                         }
                         ++numobjects ;
                     }
                 }
 
+<<<<<<< HEAD
 		else if (cmd == "tree1" || cmd == "tree2" || cmd == "couch") {
+=======
+
+		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep") {
+>>>>>>> ed5a34d8f47f8afcc33dea52b8d3fa662719d8ef
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
 		  else {
@@ -230,11 +243,34 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/tree/tree4b_lod2.obj"));
 			obj -> shape_sides = 4;
 		      }
+<<<<<<< HEAD
 		      if (cmd == "couch") {
 			obj -> name = ((std::string)("couch"));
 			obj -> file_path = ((std::string)("images/furniture/Couch.obj"));
 			obj -> shape_sides = 4;
 		      }
+=======
+		      if (cmd == "apple") {
+			obj -> name = ((std::string)("apple"));
+			obj -> file_path = ((std::string)("images/apple/apple-OBJ.obj"));
+			obj -> shape_sides = 4;
+		      }
+		      if (cmd == "horse") {
+			obj -> name = ((std::string)("horse"));
+			obj -> file_path = ((std::string)("images/horse-obj/horse-obj.obj"));
+			obj -> shape_sides = 4;
+		      }
+		      if (cmd == "cow") {
+			obj -> name = ((std::string)("cow"));
+			obj -> file_path = ((std::string)("images/cow/cow.obj"));
+			obj -> shape_sides = 3;
+		      }
+		      if (cmd == "sheep") {
+			obj -> name = ((std::string)("sheep"));
+			obj -> file_path = ((std::string)("images/sheep/sheep.obj"));
+			obj -> shape_sides = 3;
+		      }
+>>>>>>> ed5a34d8f47f8afcc33dea52b8d3fa662719d8ef
 		      ++numobjects;
 		      ++num_obj_models;
 		    }

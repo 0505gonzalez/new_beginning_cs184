@@ -1,0 +1,28 @@
+Homework 4 - Juan Gonzalez (cs184-am) and Alvin Wong (cs184-ax)
+
+The name of our project is called "A New Beginning." The story goes as follows. Our main character has passed away and his soul has left his earthly body. As a free flying spirit, he first appears in the room of his deathbed, which has a sulky and dark atmosphere. Even the environment on the outside, like the trees and the sky, are dark and ominous. Wandering about the melancholy place, he notices a faint light far away and decides to follow it. Inching closer and closer towards the light, he finds himself in a new atmosphere - a warm, beautiful, heartening environment filled with the purity of nature and dazzling landscapes. Hence, the title, "A New Beginning", defines the transition from a gloomy afterlife to a peaceful and serene one. 
+
+We have many goals for this assignment. Our most immediate goal is to gather all the objects in our scene, place them in the correct location in the world, and texturize them and add lighting to make the objects and the scene as a whole more realistic. Once we meet this goal and finish the basic requirements for the project, we will look into more add-ons. We will look at how to create transparent water reflections and how to generate "bumpy" surfaces via bump mapping. We will also try to have some animated textures to accompany our models, and also look into animation, especially when dealing with animals and our character - we will try to animate them so they can at least walk. Also, to make the assignment more enjoyable, we will look at enhancing the user interface - maybe allowing the character to be able to "fly" outdoors to have a better view of the whole scene, and maybe a coordinate system to locate where on the scene the character is. But, for both of us, we want to use this assignment as a chance to become more experienced with OpenGL and learn about the different tools graphics designers have in their arsenal to perform good, realistic scenes.
+
+Requirements:
+What we have completed so far:
+- Created a .obj parser to load the vertices, normals, and texture coordinates into our program. It's a decent parser - it works for both triangle faces and quad faces.
+- We met the requirement of doing all placement and scaling by hand. We are using a similar format to HW2, in which we write the transforms and objects in a "text-based" file and have our program translate that into usable data.
+- One Directional Light - The sun in the nature scene is an example of a directional light.
+- One Object Instantiated More Than Once - The trees in the nature scene all share the same coordinates, just with different transforms applied to them. There are 70+ trees, so I think this satisfies the requirement.
+- UI: Both mouse and keyboard - We use the keyboard as means of translating the character (WASD keys to move in a direction). We use the mouse to rotate the camera about the scene with respect to the character in the center.
+- User can look around their position, and character must be able to move forward and backwards. The UI takes care of this. We also adapted it to handle multiple keys pressed at the same time.
+
+What we need to accomplish:
+- Complete scene - we will finish this by the deadline.
+- One object must be created by hand - we can stick with a simple object, such as a chair or table in the deathbed scene, or a jagged road in the nature scene. Something simple and has normals that are easy to calculate would suffice.
+- Texture mapping - this is our next immediate goal; we have models down on our screen, now we need to map the texture image onto the object. We will look online for resources to aid us in texture mapping, and we will also try to find good textures that make the scene look more realistic.
+- A point light source - we were thinking about having a candle in the deathbed scene. So we would need a way to incorporate the point light source into the candle object to make it glow.
+- At least half of he objects must have correct normals - we can do this with our simple objects; for our complex .obj objects, we would just have to assume that the developer gave us the correct normal coordinates.
+- Double buffering, hidden surface elimination, and perspective projection. We are already using double buffering and perspective projection. We will look into hidden surface elimination, but right now, we are thinking that if the object is more than a given distance of some radius away from the character, we should not draw that object.
+- A mechanism to turn off/on textures. This can be done with a simple boolean switch, and will be implemented after we figure out how to get texture mapping to work.
+- Programmable fragment shaders - We are using the fragment shader in HW2. We will try to perform more complex add-ons with our shaders. Bump mapping is something to consider (uneven surfaces are more realistic).
+- One object must be animated. This is easy, we can just make an animal move in a circle. However, it would be nice to look into how we could get maybe their legs to move. Again, this would probably be for more simple models rather than the complex .obj models.
+
+
+
