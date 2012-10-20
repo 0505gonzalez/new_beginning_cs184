@@ -450,8 +450,8 @@ ambient 0.2 0.2 0.2 1
   
   # Modeled furniture
 # Materials first 
-  ambient 0.5 0.5 0.5 1 
-  diffuse 0.5 0.5 0.5 1
+  ambient 0.3 0.3 0.3 1
+  diffuse 1 1 1 1
   specular 1 1 1 1
   shininess 10
   pushTransform
@@ -460,10 +460,10 @@ ambient 0.2 0.2 0.2 1
 	rotate 90 0 0 1
 	# Many, many trees...
   	pushTransform
-		translate 0 0 0
+		translate 2.3 0.7 -0.1
         	rotate 1 0 0 90 
 		translate 0 0 0
-		scale 0.18 0.18 0.18
+		scale 0.25 0.25 0.25
         	couch
   	popTransform
   popTransform
