@@ -396,6 +396,62 @@ ambient 0.2 0.2 0.2 1
         scale 0.01 0.03 0.01
         sphere 1.0
   popTransform
+  
+  
+  
+# Trees
+# Materials first 
+  ambient 0.5 0.5 0.5 1 
+  diffuse 0.5 0.5 0.5 1
+  specular 1 1 1 1
+  shininess 10
+  pushTransform
+	# a global translate and rotate for trees
+	translate 0 0 -0.03
+	rotate 90 0 0 1
+	# Many, many trees...
+  	pushTransform
+		translate 7 3 -0.02
+        	rotate 1 0 0 90 
+		translate 0 0 0
+		scale 0.15 0.15 0.15
+        	tree
+  	popTransform
+  	pushTransform
+		translate 2 5 -0.02
+		rotate 1 0 0 90
+		translate 2 0 0
+		scale 0.1 0.1 0.1
+		tree
+  	popTransform
+  	pushTransform
+		translate 3 5 -0.02
+		rotate 1 0 0 100
+		translate -2 0 0
+		scale 0.2 0.2 0.2
+		tree
+  	popTransform
+  popTransform
+  
+  # Modeled furniture
+# Materials first 
+  ambient 0.5 0.5 0.5 1 
+  diffuse 0.5 0.5 0.5 1
+  specular 1 1 1 1
+  shininess 10
+  pushTransform
+	# a global translate and rotate for trees
+	translate 0 -1 -0.03
+	rotate 90 0 0 1
+	# Many, many trees...
+  	pushTransform
+		translate 0 0 -0.02
+        	rotate 1 0 0 90 
+		translate 0 0 0
+		scale 0.15 0.15 0.15
+        	couch
+  	popTransform
+  popTransform
 
 # Character - blue sphere
   ambient 0.5 0.5 0.5 1
