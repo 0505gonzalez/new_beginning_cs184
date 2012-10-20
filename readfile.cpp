@@ -204,7 +204,7 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree") {
+		else if (cmd == "tree1" || cmd == "tree2") {
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
 		  else {
@@ -220,8 +220,13 @@ void readfile(const char * filename) {
 		      obj -> type = modelobj;
 		      obj -> shininess = shininess;
 		      obj -> transform = transfstack.top();
-		      if (cmd == "tree") {
-			obj -> name = ((std::string)("tree"));
+		      if (cmd == "tree1") {
+			obj -> name = ((std::string)("tree1"));
+			obj -> file_path = ((std::string)("images/tree/tree4b_lod1.obj"));
+			obj -> shape_sides = 4;
+		      }
+		      if (cmd == "tree2") {
+			obj -> name = ((std::string)("tree2"));
 			obj -> file_path = ((std::string)("images/tree/tree4b_lod2.obj"));
 			obj -> shape_sides = 4;
 		      }

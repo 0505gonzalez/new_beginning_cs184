@@ -108,7 +108,7 @@ void display() {
             glUniform4fv(specularcol,1,obj -> specular);
             glUniform1f(shininesscol, obj -> shininess);
             
-            glLoadMatrixf(&(transf * obj -> transform)[0][0]);
+            glLoadMatrixf(&(transf * obj->transform)[0][0]);
             
         }
 	
@@ -129,20 +129,14 @@ void display() {
             glutSolidTeapot(obj->size) ;
         } else {
 	  ModelObj * object = new ModelObj();
+	  bool found_flag = false;
 	  for (int i = 0; i < size_of_list_models; i++) {
-	    if (list_of_models[i].name != obj->name) {
-	      if (!object->loadObj(obj->file_path, obj->shape_sides, obj->name)) {
-		exit(1);
-	      }
-	      list_of_models[size_of_list_models] = *object;
-	      size_of_list_models++;
-	    } else {
+	    if (list_of_models[i].name == obj->name) {
+	      found_flag = true;
 	      *object = list_of_models[i];
 	    }
 	  }
-
-	  // initial setup - must put in array because it won't be in array from the start!
-	  if (size_of_list_models == 0) {
+	  if (!found_flag) {
 	    if (!object->loadObj(obj->file_path, obj->shape_sides, obj->name)) {
 	      exit(1);
 	    }
