@@ -204,7 +204,7 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree1" || cmd == "tree2") {
+		else if (cmd == "tree1" || cmd == "tree2" || cmd == "couch") {
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
 		  else {
@@ -230,28 +230,6 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/tree/tree4b_lod2.obj"));
 			obj -> shape_sides = 4;
 		      }
-		      ++numobjects;
-		      ++num_obj_models;
-		    }
-		  }
-		}
-
-		else if (cmd == "couch") {
-		  if (numobjects == maxobjects) // No more objects
-		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
-		  else {
-		    validinput = readvals(s, 0, values);
-		    if(validinput) {
-		      object *obj = &(objects[numobjects]);
-		      for (i = 0; i < 4; i++) {
-			(obj -> ambient)[i] = ambient[i];
-			(obj -> diffuse)[i] = diffuse[i];
-			(obj -> specular)[i] = specular[i];
-			(obj -> emission)[i] = specular[i];
-		      }
-		      obj -> type = modelobj;
-		      obj -> shininess = shininess;
-		      obj -> transform = transfstack.top();
 		      if (cmd == "couch") {
 			obj -> name = ((std::string)("couch"));
 			obj -> file_path = ((std::string)("images/furniture/Couch.obj"));

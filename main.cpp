@@ -21,7 +21,21 @@ using namespace std;
 
 bool * key_states = new bool[256];
 
-void display(void) ;  // prototype for display function.  
+void display(void) ;  // prototype for display function.
+
+void saveScreenshot(string fname) {
+	int pix = w * h;
+	BYTE pixels[3*pix];
+	glReadBuffer(GL_FRONT);
+	glReadPixels(0,0,w,h,GL_BGR,GL_UNSIGNED_BYTE, pixels);
+    
+	FIBITMAP *img = FreeImage_ConvertFromRawBits(pixels, w, h, w * 3, 24, 0xFF0000, 0x00FF00, 0x0000FF, false);
+	
+	std::cout << "Saving screenshot: " << fname << "\n";
+    
+	FreeImage_Save(FIF_PNG, img, fname.c_str(), 0);
+}
+
 
 void reshape(int width, int height) {
   w = width;
@@ -43,6 +57,11 @@ void printHelp() {
 
 void keyboard(unsigned char key, int x, int y) {
   key_states[key] = true;
+  
+  if(key == 'p'){
+    std::string fname("screenshot.png");
+    saveScreenshot(fname);
+  }
 }
 
 void idleFunc ( ) {
