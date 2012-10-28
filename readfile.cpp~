@@ -180,7 +180,7 @@ void readfile(const char * filename) {
 
                 // I've left the code for loading objects in the skeleton, so
                 // you can get a sense of how this works.
-                else if (cmd == "sphere" || cmd == "cube" || cmd == "teapot" || cmd == "cylinder") {
+                else if (cmd == "sphere" || cmd == "cube" || cmd == "teapot" || cmd == "cylinder" || cmd == "disk") {
                     if (numobjects == maxobjects) // No more objects
                         cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
                     else {
@@ -204,7 +204,7 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "fence_post" || cmd == "fence_rail") {
+		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "fence") {
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
 		  else {
@@ -257,9 +257,9 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/sheep/sheep.obj"));
 			obj -> shape_sides = 3;
 		      }
-		      if (cmd == "fence_post") {
-			obj -> name = ((std::string)("fence_post"));
-			obj -> file_path = ((std::string)("images/fence/fence_post.txt"));
+		      if (cmd == "fence") {
+			obj -> name = ((std::string)("fence"));
+			obj -> file_path = ((std::string)("images/fence/fence.txt"));
 			obj -> shape_sides = 3;
 		      }
 		      ++numobjects;

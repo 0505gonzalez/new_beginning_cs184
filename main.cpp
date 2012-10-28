@@ -66,7 +66,6 @@ void keyboard(unsigned char key, int x, int y) {
 
 void idleFunc ( ) {
   vec3 c_move_dir = 0.03f*glm::normalize(vec3(char_direction));
-  cout << char_position.x << " : " << char_position.y << endl;
   if (key_states['h']) {
     printHelp();
   }
@@ -162,7 +161,7 @@ void init() {
   shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
   
   //Init scene names
-  startSceneFile = string("input/deathbed.scene");
+  startSceneFile = string("input/paradise.scene");
   
   glEnable (GL_BLEND);
   glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

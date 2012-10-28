@@ -123,9 +123,6 @@ void display() {
         }
         else if (obj -> type == teapot) {
             glutSolidTeapot(obj->size) ;
-	} else if (obj -> type == cylinder) {
-	  GLUquadricObj *quadric = gluNewQuadric();
-	  gluCylinder(quadric, obj->radius, obj->radius, obj->height, 100, 100);
 	} else if (obj -> type == modelobj) {
 	  ModelObj * object = new ModelObj();
 	  bool found_flag = false;
