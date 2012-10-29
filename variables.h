@@ -96,3 +96,6 @@ EXTERN int num_obj_models;
 
 //Textures
 EXTERN GLuint dirt;
+EXTERN GLubyte dirttexture[256][256][3] ; // ** NEW ** texture (from grsites.com)
+EXTERN GLuint texNames[1] ; // ** NEW ** texture buffer
+EXTERN GLuint istex ;  // ** NEW ** blend parameter for texturing

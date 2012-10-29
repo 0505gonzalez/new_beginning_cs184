@@ -97,6 +97,7 @@ void display() {
     glLoadMatrixf(&transf[0][0]) ;
         
     for (int i = 0 ; i < numobjects ; i++) {
+	
         object * obj = &(objects[i]) ;        
         {
             glUniform4fv(ambientcol,1,obj -> ambient);
@@ -156,8 +157,20 @@ void display() {
 	  glDisableClientState(GL_NORMAL_ARRAY);
 	}
     }
+    
+    glBindTexture(GL_TEXTURE_2D, texNames[0]);
+    glBegin(GL_QUADS);
+     glTexCoord2f(0.0, 0.0);
+     glVertex3f(0.0, 0.0, 0.0);
+     glTexCoord2f(1.0, 0.0);
+     glVertex3f(100.0, 0.0, 0.0);
+     glTexCoord2f(1.0, 1.0);
+     glVertex3f(100.0, 100.0, 0.0);
+     glTexCoord2f(0.0, 1.0);
+     glVertex3f(0.0, 100.0, 0.0);
+    glEnd();
 
-    if (use_char) {
+    if (true) {
       glUniform4fv(ambientcol, 1, character.ambient);
       glUniform4fv(diffusecol, 1, character.diffuse);
       glUniform4fv(specularcol, 1, character.specular);
@@ -165,5 +178,7 @@ void display() {
       glLoadMatrixf(&(transf * character.transform)[0][0]);
       glutSolidCube(character.size);
     }
+
+	
     glutSwapBuffers();
 }

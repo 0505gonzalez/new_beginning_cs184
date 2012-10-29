@@ -12,7 +12,8 @@
 
 varying vec4 color ;
 varying vec3 mynormal ; 
-varying vec4 myvertex ; 
+varying vec4 myvertex ;
+uniform int istex ; 
 
 const int numLights = 10 ; 
 uniform bool enablelighting ; // are we lighting at all (global).
@@ -84,7 +85,11 @@ void main (void)
             finalcolor += lightContribution;
         }
         
-        gl_FragColor = finalcolor ; 
+	if(istex > 0){
+
+	 }else{
+	 gl_FragColor = finalcolor;
+	 }
         }
-    else gl_FragColor = color ; 
+
 }
