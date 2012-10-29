@@ -46,7 +46,7 @@ void display() {
     
     // I'm including the basic matrix setup for model view to
     // give some sense of how this works.
-    
+
 	glMatrixMode(GL_MODELVIEW);
 	mat4 mv ;
     
@@ -108,9 +108,9 @@ void display() {
             
         }
 	
-	if(i == 0){
-	    glBindTexture( GL_TEXTURE_2D, dirt );
-	}
+        if(i == 0){
+            glBindTexture( GL_TEXTURE_2D, dirt );
+            }
         
         // Actually draw the object
         // We provide the actual glut drawing functions for you.
@@ -123,35 +123,39 @@ void display() {
         }
         else if (obj -> type == teapot) {
             glutSolidTeapot(obj->size) ;
-	} else if (obj -> type == modelobj) {
-	  ModelObj * object = new ModelObj();
-	  bool found_flag = false;
-	  for (int i = 0; i < size_of_list_models; i++) {
-	    if (list_of_models[i].name == obj->name) {
-	      found_flag = true;
-	      *object = list_of_models[i];
-	    }
-	  }
-	  if (!found_flag) {
-	    if (!object->loadObj(obj->file_path, obj->shape_sides, obj->name)) {
-	      exit(1);
-	    }
-	    list_of_models[size_of_list_models] = *object;
-	    size_of_list_models++;
-	  }
+        } else if (obj -> type == modelobj) {
+            ModelObj * object = new ModelObj();
+            bool found_flag = false;
+            for (int i = 0; i < size_of_list_models; i++) {
+                if (list_of_models[i].name == obj->name) {
+                    found_flag = true;
+                    *object = list_of_models[i];
+                }
+            }
+            if (!found_flag) {
+                if (!object->loadObj(obj->file_path, obj->shape_sides, obj->name)) {
+                    exit(1);
+                }
+                list_of_models[size_of_list_models] = *object;
+                size_of_list_models++;
+            }
 
-	  glEnableClientState(GL_NORMAL_ARRAY);
-	  glEnableClientState(GL_VERTEX_ARRAY);
-	  glNormalPointer(GL_FLOAT, 0, object->normals);
-	  glVertexPointer(3, GL_FLOAT, 0, object->vertices);
-	  if (object->shape == 4) {
-	    glDrawElements(GL_QUADS, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
-	  } else if (object -> shape == 3) {
-	    glDrawElements(GL_TRIANGLES, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
-	  }
-	  glDisableClientState(GL_VERTEX_ARRAY);
-	  glDisableClientState(GL_NORMAL_ARRAY);
-	}
+            glEnableClientState(GL_NORMAL_ARRAY);
+            glEnableClientState(GL_VERTEX_ARRAY);
+            glEnableClientState(GL_INDEX_ARRAY);
+        
+            glIndexPointer(GL_UNSIGNED_INT, 0, object->vertex_indices);
+            glNormalPointer(GL_FLOAT, 0, object->normals);
+            glVertexPointer(3, GL_FLOAT, 0, object->vertices);
+            if (object->shape == 4) {
+                glDrawElements(GL_QUADS, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
+            } else if (object -> shape == 3) {
+                glDrawElements(GL_TRIANGLES, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
+            }
+            glDisableClientState(GL_INDEX_ARRAY);
+            glDisableClientState(GL_VERTEX_ARRAY);
+            glDisableClientState(GL_NORMAL_ARRAY);
+        }
     }
 
     if (use_char) {

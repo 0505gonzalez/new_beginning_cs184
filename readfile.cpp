@@ -160,11 +160,11 @@ void readfile(const char * filename) {
                         upinit = glm::vec3(values[6], values[7], values[8]);
                         center = glm::vec3(values[3], values[4], values[5]);
                         fovy = values[9];
-			elevation = glm::asin(values[2] / glm::sqrt(values[0]*values[0] + values[1]*values[1] + values[2]*values[2]))*180.0/pi;
-			if (elevation < min_elevation || elevation > max_elevation) {
-			  cerr << "elevation is not between " << min_elevation << " and " << max_elevation << "degrees. Elevation: " << elevation << endl;
-			  exit(1);
-			}
+                        elevation = glm::asin(values[2] / glm::sqrt(values[0]*values[0] + values[1]*values[1] + values[2]*values[2]))*180.0/pi;
+                        if (elevation < min_elevation || elevation > max_elevation) {
+                            cerr << "elevation is not between " << min_elevation << " and " << max_elevation << "degrees. Elevation: " << elevation << endl;
+                            exit(1);
+                        }
                     }
                 }
 
@@ -180,7 +180,7 @@ void readfile(const char * filename) {
 
                 // I've left the code for loading objects in the skeleton, so
                 // you can get a sense of how this works.
-                else if (cmd == "sphere" || cmd == "cube" || cmd == "teapot" || cmd == "cylinder") {
+                else if (cmd == "sphere" || cmd == "cube" || cmd == "teapot") {
                     if (numobjects == maxobjects) // No more objects
                         cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
                     else {
@@ -262,6 +262,11 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/fence/fence_post.txt"));
 			obj -> shape_sides = 3;
 		      }
+		      if (cmd == "fence_rail") {
+			obj -> name = ((std::string)("fence_rail"));
+			obj -> file_path = ((std::string)("images/fence/fence_rail.txt"));
+			obj -> shape_sides = 3;
+		      }
 		      ++numobjects;
 		      ++num_obj_models;
 		    }
@@ -290,13 +295,13 @@ void readfile(const char * filename) {
 		    }
 		}
 
-                else if (cmd == "translate") {
+               else if (cmd == "translate") {
                     validinput = readvals(s,3,values) ;
                     if (validinput) {
                         // YOUR CODE FOR HW 2 HERE.
                         // Think about how the transformation stack is affected
                         // You might want to use helper functions on top of file.
-                        mat4 curTransMat = glm::transpose(Transform::translate((float) values[0], (float) values[1], (float) values[2]));
+		        mat4 curTransMat = glm::transpose(Transform::translate((float) values[0], (float) values[1], (float) values[2]));
                         rightmultiply(curTransMat, transfstack);
                     }
                 }
@@ -306,7 +311,8 @@ void readfile(const char * filename) {
                         // YOUR CODE FOR HW 2 HERE.
                         // Think about how the transformation stack is affected
                         // You might want to use helper functions on top of file.
-                        mat4 curScaleMat = glm::transpose(Transform::scale((float) values[0], (float) values[1], (float) values[2]));
+
+		        mat4 curScaleMat = glm::transpose(Transform::scale((float) values[0], (float) values[1], (float) values[2]));
                         rightmultiply(curScaleMat, transfstack);
                     }
                 }
@@ -325,6 +331,7 @@ void readfile(const char * filename) {
                         rightmultiply(curRotationMat, transfstack);
                     }
                 }
+
                 
                 // I include the basic push/pop code for matrix stacks
                 else if (cmd == "pushTransform") 
