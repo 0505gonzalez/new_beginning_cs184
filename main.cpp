@@ -22,6 +22,24 @@ using namespace std;
 bool * key_states = new bool[256];
 
 void display(void) ;  // prototype for display function.
+void collisionProcess(void);
+void loadTex(const char * filename, GLubyte textureLocation[256][256][3]);
+
+// Very basic code to read a ppm file
+// And then set up buffers for texture coordinates
+void loadTex (const char * filename, GLubyte textureLocation[256][256][3]) {
+	int i,j,k ;
+	FILE * fp ; 
+	GLint err ; 
+	assert(fp = fopen(filename,"rb")) ;
+	fscanf(fp,"%*s %*d %*d %*d%*c") ;
+	for (i = 0 ; i < 256 ; i++)
+		for (j = 0 ; j < 256 ; j++)
+			for (k = 0 ; k < 3 ; k++)
+				fscanf(fp,"%c",&(textureLocation[i][j][k])) ;
+	fclose(fp) ;  
+}
+
 
 void saveScreenshot(string fname) {
 	int pix = w * h;
@@ -124,6 +142,7 @@ void idleFunc ( ) {
     Transform::up(amount_rot_y, eyeinit, up);
     eye = eyeinit + distance_eye_to_eyeinit;
     glutPostRedisplay();
+    collisionProcess();
 }
 
 
@@ -146,26 +165,54 @@ void mouse(int x, int y) {
     }
 }
 
+void collisionProcess(){
+    if(char_position.y < -25 && char_position.x < 25 && char_position.x > 23){
+	string fileName("input/paradise.scene");
+	loadScene(fileName);
+    }
+    
+    glutPostRedisplay();
+}
+
+/* Initializes textures */
+void initTextures(){
+  glGenTextures(1, texNames) ;
+  
+  loadTex("images/textures/deathbed/dirt.pbm", dirttexture);
+  
+  glBindTexture(GL_TEXTURE_2D, texNames[0]);
+  glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+  glTexImage2D (GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, dirttexture);
+}
+
 void init() {
-    // Initialize shaders
-    vertexshader = initshaders(GL_VERTEX_SHADER, "shaders/light.vert.glsl") ;
-    fragmentshader = initshaders(GL_FRAGMENT_SHADER, "shaders/light.frag.glsl") ;
-    shaderprogram = initprogram(vertexshader, fragmentshader) ; 
-    enablelighting = glGetUniformLocation(shaderprogram,"enablelighting") ;
-    lightpos = glGetUniformLocation(shaderprogram,"lightposn") ;       
-    lightcol = glGetUniformLocation(shaderprogram,"lightcolor") ;       
-    numusedcol = glGetUniformLocation(shaderprogram,"numused") ;       
-    ambientcol = glGetUniformLocation(shaderprogram,"ambient") ;       
-    diffusecol = glGetUniformLocation(shaderprogram,"diffuse") ;       
-    specularcol = glGetUniformLocation(shaderprogram,"specular") ;       
-    emissioncol = glGetUniformLocation(shaderprogram,"emission") ;       
-    shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
-    
-    //Init scene names
-    startSceneFile = string("input/paradise.scene");
-    
-    glEnable (GL_BLEND);
-    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  // Initialize shaders
+  vertexshader = initshaders(GL_VERTEX_SHADER, "shaders/light.vert.glsl") ;
+  fragmentshader = initshaders(GL_FRAGMENT_SHADER, "shaders/light.frag.glsl") ;
+  shaderprogram = initprogram(vertexshader, fragmentshader) ; 
+  enablelighting = glGetUniformLocation(shaderprogram,"enablelighting") ;
+  lightpos = glGetUniformLocation(shaderprogram,"lightposn") ;       
+  lightcol = glGetUniformLocation(shaderprogram,"lightcolor") ;       
+  numusedcol = glGetUniformLocation(shaderprogram,"numused") ;       
+  ambientcol = glGetUniformLocation(shaderprogram,"ambient") ;       
+  diffusecol = glGetUniformLocation(shaderprogram,"diffuse") ;       
+  specularcol = glGetUniformLocation(shaderprogram,"specular") ;       
+  emissioncol = glGetUniformLocation(shaderprogram,"emission") ;       
+  shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
+  
+  //Init scene names
+  startSceneFile = string("input/deathbed.scene");
+  
+  glEnable (GL_BLEND);
+  glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  
+  //initTextures();
 }
 
 int main (int argc, char* argv[]) {

@@ -204,7 +204,8 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "fence_post" || cmd == "fence_rail") {
+		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "deadTreee1" || cmd == "coffeeTable" || cmd == "fence_post" || cmd == "fence_rail") {
+
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
 		  else {
@@ -231,10 +232,23 @@ void readfile(const char * filename) {
 			obj -> shape_sides = 4;
 		      }
 		      
-		      if (cmd == "couch") {
-			obj -> name = ((std::string)("couch"));
-			obj -> file_path = ((std::string)("images/furniture/Couch.obj"));
+		     /** if (cmd == "deadMaple") {
+			obj -> name = ((std::string)("deadMaple"));
+			obj -> file_path = ((std::string)("images/bare_maple_tree/Large bare maple tree.obj"));
+			obj -> shape_sides = 4;
+		      }
+              **/
+		      
+		      if (cmd == "coffeeTable") {
+			obj -> name = ((std::string)("coffeeTable"));
+			obj -> file_path = ((std::string)("images/furniture/table.obj"));
 			obj -> shape_sides = 3;
+		      }
+		      
+		      if (cmd == "deadTree1") {
+			obj -> name = ((std::string)("deadTree1"));
+			obj -> file_path = ((std::string)("images/bare_maple_tree/tree.obj"));
+			obj -> shape_sides = 4;
 		      }
 
 		      if (cmd == "apple") {
@@ -286,9 +300,14 @@ void readfile(const char * filename) {
 			(obj -> specular)[i] = specular[i] ;
 			(obj -> emission)[i] = emission[i] ;
 		      }
+		      
+		      obj -> name = ((std::string)("character"));
+			obj -> file_path = ((std::string)("images/character.obj"));
+			obj -> shape_sides = 3;
+		      
 		      obj -> shininess = shininess;
 		      obj -> transform = transfstack.top();
-		      obj -> type = cube;
+		      obj -> type = modelobj;
 		      use_char = true;
 		      char_direction = vec3(values[0], values[1], values[2]);
 		      char_position = vec3(0,0,0); // for simplicity, character starts at origin
