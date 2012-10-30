@@ -204,7 +204,7 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "deadTree1" || cmd == "coffeeTable" || cmd == "fence_post" || cmd == "fence_rail") {
+		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "deadTree1" || cmd == "coffeeTable" || cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton") {
 
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
@@ -236,7 +236,9 @@ void readfile(const char * filename) {
 			obj -> name = ((std::string)("deadOak"));
 			obj -> file_path = ((std::string)("images/dead_tree2/tree_oak.obj"));
 			obj -> shape_sides = 3;
+                  
               }  
+
 		      if (cmd == "coffeeTable") {
 			obj -> name = ((std::string)("coffeeTable"));
 			obj -> file_path = ((std::string)("images/furniture/table.obj"));
@@ -279,11 +281,17 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/fence/fence_rail.txt"));
 			obj -> shape_sides = 3;
 		      }
+		      if (cmd == "skeleton") {
+			obj -> name = ((std::string)("skeleton"));
+			obj -> file_path = ((std::string)("images/skeleton.obj"));
+			obj -> shape_sides = 3;
+		      }
 		      ++numobjects;
 		      ++num_obj_models;
 		    }
 		  }
 		}
+
 		// TEMPORARY: I need an object to play around with.
 		// Input: character <size> --- creates a cube of size "size".
 		else if (cmd == "character") {

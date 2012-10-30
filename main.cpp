@@ -180,7 +180,7 @@ void mouse(int x, int y) {
 }
 
 void collisionProcess(){
-    if(char_position.y < -25 && char_position.x < 25 && char_position.x > 23){
+    if(char_position.y < -15 && char_position.x < 15 && char_position.x > 13){
 	string fileName("input/paradise.scene");
 	loadScene(fileName);
     }
