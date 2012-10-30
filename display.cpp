@@ -172,13 +172,39 @@ void display() {
     glEnd();
      **/
 
-    if (true) {
-      glUniform4fv(ambientcol, 1, character.ambient);
-      glUniform4fv(diffusecol, 1, character.diffuse);
-      glUniform4fv(specularcol, 1, character.specular);
-      glUniform1f(shininesscol, character.shininess);
-      glLoadMatrixf(&(transf * character.transform)[0][0]);
-      glutSolidCube(character.size);
+    if (use_char) {
+        glUniform4fv(ambientcol, 1, character.ambient);
+        glUniform4fv(diffusecol, 1, character.diffuse);
+        glUniform4fv(specularcol, 1, character.specular);
+        glUniform1f(shininesscol, character.shininess);
+        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0,0,0.4)) )[0][0]);
+        glutSolidSphere(0.08, 20, 20);
+        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0,0,0.15)) )[0][0]);
+        GLUquadricObj* quad_obj = gluNewQuadric();
+        gluCylinder(quad_obj, 0.01, 0.01, 0.2, 10, 10);
+        
+        GLfloat black_ambient[4] = {0.1,0.1,0.1,1};
+        GLfloat black_diffuse[4] = {0.1,0.1,0.1,1};
+        GLfloat black_specular[4] = {0.1,0.1,0.1,1};
+        GLfloat black_shininess = 2;
+        
+        glUniform4fv(ambientcol, 1, black_ambient);
+        glUniform4fv(diffusecol, 1, black_diffuse);
+        glUniform4fv(specularcol, 1, black_specular);
+        glUniform1f(shininesscol, black_shininess);
+        
+        glUniform4fv(specularcol, 1, character.specular);
+        glUniform1f(shininesscol, character.shininess);
+        glLoadMatrixf(&(transf *character.transform * glm::transpose(Transform::translate(0,0,0.28)))[0][0]);
+        quad_obj = gluNewQuadric();
+        gluCylinder(quad_obj, 0.06, 0.01, 0.02, 10, 10);
+        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0,0,0.11)))[0][0]);
+        quad_obj = gluNewQuadric();
+        gluCylinder(quad_obj, 0.07, 0.07, 0.18, 10, 10);
+        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(-0.04,0,0.03)))[0][0]);
+        quad_obj = gluNewQuadric();
+        gluCylinder(quad_obj, 0.02, 0.02, 0.08, 10, 10);
+        
     }
 
 	
