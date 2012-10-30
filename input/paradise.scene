@@ -1,13 +1,12 @@
 # Set the scene size and camera location 
 size 1000 1000
+backgroundColor 0 0.8 0.8 0
+
 elevation 2 45
 camera 0 -3 0.5 0 0 0 0 0 1 30.0
 
-# lights.  A single point and directional light
-# Note that your program must support up to 10 lights
-light 0 15 15 1 1 0.6 0 1  
-# I do a global transform to move this down a little 
-# A good use of matrix stacks and hierarchy 
+light 0 35 2.5 1 1 0.6 0 1
+
 pushTransform 
 
 # Sun
@@ -16,8 +15,8 @@ pushTransform
   specular 0.5 0.5 0.5 1
   shininess 2
   pushTransform
-	translate 0 15 15
-	sphere 1
+	translate 0 35 2.5
+	sphere 0.3
   popTransform
 
 # Trees
@@ -28,14 +27,14 @@ pushTransform
   shininess 10
   pushTransform
 	# a global translate and rotate for trees
-	translate 0 0 -0.03
-	rotate 1 0 0 90
-	ambient 0.3 0.7 0.7
+    translate 0 0 -0.03
+    rotate 1 0 0 90
+	ambient 0.3 0.7 0.7 1
 	# Many, many trees...
   	pushTransform 
 		translate 0 0 0
 		scale 0.25 0.25 0.25
-        	tree1
+        tree1
   	popTransform
   	pushTransform
 		translate 3 0 0
@@ -613,24 +612,6 @@ pushTransform
 		tree2
 	popTransform
   popTransform
-
-# Apples
-  ambient 0.7 0.4 0.3 1
-  diffuse 0.2 0.1 0.1 1
-  specular 0.2 0.1 0.1 1
-  shininess 1
-  pushTransform
-        scale 0.01 0.01 0.01
-        rotate 1 0 0 90
-        translate -10 -10 0
-        apple
-  popTransform
-  pushTransform
-        scale 0.009 0.009 0.009
-        rotate 1 0 0 95
-        translate -100 -5 80
-        apple
-  popTransform
   
 # Animals
   ambient 0.3 0.2 0.2 1
@@ -638,9 +619,9 @@ pushTransform
   specular 0.1 0.1 0.1 1
   shininess 2
   pushTransform
-      translate -16 -0.32 -0.1
-      rotate 1 0 0 90
+      translate -17 -2 0
       scale 0.01 0.01 0.01
+      rotate 1 0 0 90
       horse
   popTransform
   ambient 0.2 0.2 0.2 1
@@ -648,9 +629,9 @@ pushTransform
   specular 0.1 0.1 0.1 1
   shininess 3
   pushTransform
-      translate -18 -0.2 -0.1
-      rotate 1 0 0 90
+      translate -18 -0.2 0
       scale 0.5 0.5 0.5
+      rotate 1 0 0 90
       cow
   popTransform
   ambient 0.6 0.6 0.6 1
@@ -658,40 +639,2125 @@ pushTransform
   specular 0.2 0.2 0.2 1
   shininess 3
   pushTransform
-      translate -14 -2 0.09
+      translate -14 -2 0.19
+      scale 0.6 0.6 0.5
       rotate 1 0 0 90
       rotate 0 1 0 120
-      scale 0.6 0.5 0.5
       sheep
   popTransform
   pushTransform
-      translate -14 -3 0.09
+      translate -14 -3 0.19
+      scale 0.6 0.6 0.5
       rotate 1 0 0 90
       rotate 0 1 0 240
-      scale 0.61 0.51 0.51
       sheep
   popTransform
 
-# Floor (cylinder)
+
+# Floor (cube)
 # Materials first.  We don't change specular and shininess
   ambient 0.2 0.4 0.1 1
   diffuse 0.2 0.2 0.2 1
   specular 0.2 0.5 0.2 1
   shininess 3
   pushTransform
-	translate 0 0 -0.1
-    scale 40.0 40.0 0.025
+    translate 0 0 0.015
+    scale 40.2 40.2 2
+    translate 0 0 -0.5
     cube 1
   popTransform
 
-# Character - blue sphere
+# Character - blue cube
   ambient 0.3 0.3 1 1
   diffuse 0.3 0.3 1 1
-  specular 0.2 0.2 1 1
-  shininess 1
+  specular 0 0 0 1
   pushTransform
+        translate 0 0 0.115
        	character 0 1 0
   popTransform
-  
-  
-popTransform
+
+# Fence Border
+  ambient 0.4 0.25 0.25 1
+  diffuse 0.13 0.13 0.13 1
+  specular 0.13 0.13 0.13 1
+  shininess 2
+  pushTransform
+    translate 20 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 19.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 19.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 19 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 18.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 18.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 18 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 17.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 17.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 17 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 16.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 16.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 16 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 15.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 15.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 15 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 14.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 14.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 14 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 13.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 13.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 13 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 12.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 12.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 12 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 11.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 11.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 11 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 10.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 10.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 10 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 9.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 9.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 9 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 8.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 8.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 8 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 7.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 7.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 7 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 6.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 6.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 6 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 5.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 5.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 5 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 4.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 4.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 4 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 3.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 3.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 3 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 2.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 2.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 2 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 1.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 1.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 1 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 0.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 0.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 0 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -0.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -0.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -1 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -1.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -1.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -2 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -2.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -2.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -3 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -3.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -3.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -4 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -4.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -4.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -5 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -5.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -5.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -6 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -6.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -6.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -7 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -7.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -7.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -8 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -8.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -8.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -9 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -9.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -9.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -10 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -10.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -10.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -11 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -11.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -11.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -12 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -12.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -12.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -13 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -13.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -13.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -14 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -14.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -14.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -15 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -15.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -15.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -16 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -16.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -16.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -17 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -17.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -17.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -18 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -18.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -18.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -19 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -19.5 20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -19.5 20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 19.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 19.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 19 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 18.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 18.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 18 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 17.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 17.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 17 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 16.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 16.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 16 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 15.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 15.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 15 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 14.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 14.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 14 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 13.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 13.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 13 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 12.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 12.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 12 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 11.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 11.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 11 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 10.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 10.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 10 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 9.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 9.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 9 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 8.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 8.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 8 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 7.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 7.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 7 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 6.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 6.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 6 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 5.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 5.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 5 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 4.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 4.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 4 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 3.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 3.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 3 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 2.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 2.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 2 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 1.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 1.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 1 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 0.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 0.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 0 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -0.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -0.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -1 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -1.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -1.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -2 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -2.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -2.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -3 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -3.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -3.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -4 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -4.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -4.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -5 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -5.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -5.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -6 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -6.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -6.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -7 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -7.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -7.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -8 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -8.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -8.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -9 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -9.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -9.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -10 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -10.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -10.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -11 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -11.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -11.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -12 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -12.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -12.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -13 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -13.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -13.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -14 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -14.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -14.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -15 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -15.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -15.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -16 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -16.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -16.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -17 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -17.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -17.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -18 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -18.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -18.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -19 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -20 -19.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -19.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate -20 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -19.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -19.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -19 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -18.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -18.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -18 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -17.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -17.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -17 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -16.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -16.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -16 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -15.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -15.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -15 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -14.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -14.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -14 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -13.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -13.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -13 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -12.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -12.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -12 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -11.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -11.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -11 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -10.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -10.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -10 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -9.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -9.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -9 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -8.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -8.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -8 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -7.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -7.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -7 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -6.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -6.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -6 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -5.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -5.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -5 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -4.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -4.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -4 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -3.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -3.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -3 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -2.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -2.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -2 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -1.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -1.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate -1 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate -0.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate -0.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 0 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 0.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 0.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 1 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 1.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 1.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 2 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 2.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 2.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 3 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 3.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 3.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 4 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 4.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 4.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 5 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 5.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 5.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 6 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 6.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 6.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 7 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 7.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 7.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 8 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 8.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 8.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 9 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 9.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 9.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 10 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 10.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 10.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 11 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 11.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 11.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 12 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 12.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 12.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 13 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 13.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 13.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 14 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 14.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 14.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 15 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 15.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 15.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 16 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 16.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 16.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 17 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 17.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 17.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 18 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 18.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 18.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 19 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 19.5 -20 0.115
+    fence_rail
+  popTransform
+  pushTransform
+    translate 19.5 -20 0.315
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -20 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -19.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -19.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -19 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -18.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -18.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -18 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -17.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -17.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -17 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -16.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -16.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -16 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -15.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -15.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -15 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -14.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -14.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -14 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -13.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -13.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -13 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -12.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -12.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -12 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -11.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -11.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -11 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -10.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -10.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -10 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -9.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -9.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -9 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -8.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -8.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -8 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -7.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -7.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -7 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -6.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -6.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -6 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -5.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -5.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -5 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -4.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -4.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -4 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -3.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -3.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -3 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -2.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -2.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -2 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -1.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -1.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -1 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 -0.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 -0.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 0 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 0.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 0.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 1 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 1.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 1.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 2 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 2.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 2.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 3 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 3.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 3.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 4 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 4.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 4.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 5 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 5.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 5.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 6 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 6.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 6.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 7 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 7.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 7.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 8 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 8.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 8.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 9 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 9.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 9.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 10 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 10.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 10.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 11 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 11.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 11.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 12 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 12.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 12.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 13 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 13.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 13.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 14 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 14.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 14.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 15 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 15.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 15.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 16 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 16.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 16.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 17 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 17.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 17.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 18 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 18.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 18.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 19 0.015
+    fence_post
+  popTransform
+  pushTransform
+    translate 20 19.5 0.115
+    rotate 0 0 1 90
+    fence_rail
+  popTransform
+  pushTransform
+    translate 20 19.5 0.315
+    rotate 0 0 1 90
+    fence_rail
+  popTransform

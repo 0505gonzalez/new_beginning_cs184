@@ -68,42 +68,54 @@ bool ModelObj::loadObj(string file_name, int shape, string name) {
   }
 
   // All values are now in the temp vectors. We need to convert to arrays.
-  vertices = new float[temp_vertices.size()];
   int index = 0;
+  float vertex_array[temp_vertices.size()];
   vector<float>::iterator float_it;
   for (float_it = temp_vertices.begin(); float_it < temp_vertices.end(); float_it++) {
-    *(vertices+index) = *float_it;
+    *(vertex_array+index) = *float_it;
     index++;
   }
   index = 0;
-  textures = new float[temp_textures.size()];
+  float texture_array[temp_textures.size()];
   for (float_it = temp_textures.begin(); float_it < temp_textures.end(); float_it++) {
-    *(textures+index) = *float_it;
+    *(texture_array+index) = *float_it;
     index++;
   }
   index = 0;
-  normals = new float[temp_normals.size()];
+  float normal_array[temp_normals.size()];
   for (float_it = temp_normals.begin(); float_it < temp_normals.end(); float_it++) {
-    *(normals+index) = *float_it;
+    *(normal_array+index) = *float_it;
     index++;
   }
+
+  vertices = new float[temp_vertex_indices.size()*3];
+  textures = new float[temp_texture_indices.size()*3];
+  normals = new float[temp_normal_indices.size()*3];
   index = 0;
   vertex_indices = new int[temp_vertex_indices.size()];
   vector <int>::iterator int_it;
   for (int_it = temp_vertex_indices.begin(); int_it < temp_vertex_indices.end(); int_it++) {
-    *(vertex_indices+index) = *int_it;
+    *(vertex_indices+index) = index;
+    *(vertices+index*3) = vertex_array[(*int_it)*3];
+    *(vertices+index*3+1) = vertex_array[(*int_it)*3+1];
+    *(vertices+index*3+2) = vertex_array[(*int_it)*3+2];
     index++;
   }
   index = 0;
   texture_indices = new int[temp_texture_indices.size()];
   for (int_it = temp_texture_indices.begin(); int_it < temp_texture_indices.end(); int_it++) {
-    *(texture_indices+index) = *int_it;
+    *(texture_indices+index) = index;
+    *(textures+index*2) = texture_array[(*int_it)*2];
+    *(textures+index*2+1) = texture_array[(*int_it)*2+1];
     index++;
   }
   index = 0;
   normal_indices = new int[temp_normal_indices.size()];
   for (int_it = temp_normal_indices.begin(); int_it < temp_normal_indices.end(); int_it++) {
-    *(normal_indices+index) = *int_it;
+    *(normal_indices+index) = index;
+    *(normals+index*3) = normal_array[(*int_it)*3];
+    *(normals+index*3+1) = normal_array[(*int_it)*3 + 1];
+    *(normals+index*3+2) = normal_array[(*int_it)*3 + 2];
     index++;
   }
 
