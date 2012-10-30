@@ -7,9 +7,9 @@
 #include <GL/glut.h>
 #include "shaders.h"
 #include "Transform.h"
-#include <FreeImage.h>
 #include <math.h>
 #include "Character.cpp"
+#include <sys/time.h>
 
 using namespace std;
 
@@ -20,6 +20,12 @@ using namespace std;
 #include "ModelObj.h"
 
 bool * key_states = new bool[256];
+
+
+//Animation Variables:
+struct timeval timeStart,timeEnd,time_charStart,time_charEnd;
+int time_start, time_end;
+int delta_char_frame = 1;
 
 void display(void) ;  // prototype for display function.
 void collisionProcess(void);
@@ -39,21 +45,6 @@ void loadTex (const char * filename, GLubyte textureLocation[256][256][3]) {
 				fscanf(fp,"%c",&(textureLocation[i][j][k])) ;
 	fclose(fp) ;  
 }
-
-
-void saveScreenshot(string fname) {
-	int pix = w * h;
-	BYTE pixels[3*pix];
-	glReadBuffer(GL_FRONT);
-	glReadPixels(0,0,w,h,GL_BGR,GL_UNSIGNED_BYTE, pixels);
-    
-	FIBITMAP *img = FreeImage_ConvertFromRawBits(pixels, w, h, w * 3, 24, 0xFF0000, 0x00FF00, 0x0000FF, false);
-    
-	std::cout << "Saving screenshot: " << fname << "\n";
-    
-	FreeImage_Save(FIF_PNG, img, fname.c_str(), 0);
-}
-
 
 void reshape(int width, int height) {
     w = width;
@@ -76,73 +67,96 @@ void printHelp() {
 void keyboard(unsigned char key, int x, int y) {
     key_states[key] = true;
     
-    if(key == 'p'){
-        std::string fname("screenshot.png");
-        saveScreenshot(fname);
-    }
 }
 
+
+void handleAnimation() {
+    gettimeofday(&time_charEnd, NULL);
+    if ((time_charEnd.tv_sec - time_charStart.tv_sec)*1000000.0+(time_charEnd.tv_usec - time_charStart.tv_usec) > 50000) {
+        if (char_frame == 6) {
+            delta_char_frame = -1;
+        } else if (char_frame == -6) {
+            delta_char_frame = 1;
+        }
+        char_frame += delta_char_frame;
+        gettimeofday(&time_charStart, NULL);
+    }
+    
+}
+
+
 void idleFunc ( ) {
-    vec3 c_move_dir = 0.03f*glm::normalize(vec3(char_direction));
-    cout << char_position.x << " : " << char_position.y << endl;
-    if (key_states['h']) {
-        printHelp();
-    }
-    if (key_states[27]) { // Escape to quit                                                                                                                                                                   
-        exit(0);
-    }
-    if (key_states['w']) {
-        character.transform = glm::transpose(Transform::translate(c_move_dir.x, c_move_dir.y, c_move_dir.z))*character.transform;
-        eye += c_move_dir;
-        center += c_move_dir;
-        char_position += c_move_dir;
-    }
-    if (key_states['s']) {
-        character.transform = glm::transpose(Transform::translate(-c_move_dir.x, -c_move_dir.y, -c_move_dir.z))*character.transform;
-        eye -= c_move_dir;
-        center -= c_move_dir;
-        char_position -= c_move_dir;
-    }
-    if (key_states['a']) {
-        vec3 left_vec = vec3(-c_move_dir.y, c_move_dir.x, c_move_dir.z);
-        character.transform = glm::transpose(Transform::translate(-c_move_dir.y, c_move_dir.x, c_move_dir.z))*character.transform;
-        eye += left_vec;
-        center += left_vec;
-        char_position += left_vec;
-    }
-    if (key_states['d']) {
-        vec3 right_vec = vec3(c_move_dir.y, -c_move_dir.x, c_move_dir.z);
-        character.transform = glm::transpose(Transform::translate(c_move_dir.y, -c_move_dir.x, c_move_dir.z))*character.transform;
-        eye += right_vec;
-        center += right_vec;
-        char_position += right_vec;
+
+    gettimeofday(&timeEnd, NULL);
+    if ((timeEnd.tv_sec - timeStart.tv_sec)*1000000.0+(timeEnd.tv_usec - timeStart.tv_usec) > 33) {
+
+
+        vec3 c_move_dir = 0.03f*glm::normalize(vec3(char_direction));
+        cout << char_position.x << " : " << char_position.y << endl;
+        if (key_states['h']) {
+            printHelp();
+        }
+        if (key_states[27]) { // Escape to quit                                                                                                                                                                   
+            exit(0);
+        }
+        if (key_states['w']) {
+            character.transform = glm::transpose(Transform::translate   (c_move_dir.x, c_move_dir.y, c_move_dir.z))*character.transform;
+            eye += c_move_dir;
+            center += c_move_dir;
+            char_position += c_move_dir;
+        }
+        if (key_states['s']) {
+            character.transform = glm::transpose(Transform::translate(-c_move_dir.x, -c_move_dir.y, -c_move_dir.z))*character.transform;
+            eye -= c_move_dir;
+            center -= c_move_dir;
+            char_position -= c_move_dir;
+        }
+        if (key_states['a']) {
+            vec3 left_vec = vec3(-c_move_dir.y, c_move_dir.x, c_move_dir.z);
+            character.transform = glm::transpose(Transform::translate(-c_move_dir.y, c_move_dir.x, c_move_dir.z))*character.transform;
+            eye += left_vec;
+            center += left_vec;
+            char_position += left_vec;
+        }
+        if (key_states['d']) {
+            vec3 right_vec = vec3(c_move_dir.y, -c_move_dir.x, c_move_dir.z);
+            character.transform = glm::transpose(Transform::translate(c_move_dir.y, -c_move_dir.x, c_move_dir.z))*character.transform;
+            eye += right_vec;
+            center += right_vec;
+            char_position += right_vec;
+        }
+    
+        distance_eye_to_eyeinit = eye - eyeinit;
+        float amount_rot_x = (w/2.0-mousex)*0.003/w*360.0;
+        float amount_rot_y = -(h/2.0-mousey)*0.001/h*360.0;
+    
+        /* Don't allow movement in the center of the screen */
+        if(mousex < (w/2.0 + w/5.0) && mousex > (w/2.0 - w/5.0)){
+            amount_rot_x = 0.0;
+        }
+        if(mousey < (h/2.0 + h/3.0) && mousey > (h/2.0 - h/3.0)){
+            amount_rot_y = 0.0;
+        }
+    
+        if (elevation + amount_rot_y < min_elevation) {
+            amount_rot_y = min_elevation - elevation;
+        } else if (elevation + amount_rot_y > max_elevation) {
+            amount_rot_y = max_elevation - elevation;
+        }
+        elevation += amount_rot_y;
+        Transform::left(amount_rot_x, eyeinit, up);
+        Transform::left(amount_rot_x, char_direction, up);
+        character.transform = glm::transpose(Transform::translate(char_position.x, char_position.y, char_position.z))*glm::transpose(mat4(Transform::rotate(amount_rot_x, up)))*glm::transpose(Transform::translate(-char_position.x, -char_position.y, -char_position.z))*character.transform;
+        Transform::up(amount_rot_y, eyeinit, up);
+        eye = eyeinit + distance_eye_to_eyeinit;
+        glutPostRedisplay();
+        collisionProcess();
+        
+        gettimeofday(&timeStart, NULL);
     }
     
-    distance_eye_to_eyeinit = eye - eyeinit;
-    float amount_rot_x = (w/2.0-mousex)*0.003/w*360.0;
-    float amount_rot_y = -(h/2.0-mousey)*0.001/h*360.0;
-    
-    /* Don't allow movement in the center of the screen */
-    if(mousex < (w/2.0 + w/5.0) && mousex > (w/2.0 - w/5.0)){
-        amount_rot_x = 0.0;
-    }
-    if(mousey < (h/2.0 + h/3.0) && mousey > (h/2.0 - h/3.0)){
-        amount_rot_y = 0.0;
-    }
-    
-    if (elevation + amount_rot_y < min_elevation) {
-        amount_rot_y = min_elevation - elevation;
-    } else if (elevation + amount_rot_y > max_elevation) {
-        amount_rot_y = max_elevation - elevation;
-    }
-    elevation += amount_rot_y;
-    Transform::left(amount_rot_x, eyeinit, up);
-    Transform::left(amount_rot_x, char_direction, up);
-    character.transform = glm::transpose(Transform::translate(char_position.x, char_position.y, char_position.z))*glm::transpose(mat4(Transform::rotate(amount_rot_x, up)))*glm::transpose(Transform::translate(-char_position.x, -char_position.y, -char_position.z))*character.transform;
-    Transform::up(amount_rot_y, eyeinit, up);
-    eye = eyeinit + distance_eye_to_eyeinit;
-    glutPostRedisplay();
-    collisionProcess();
+    handleAnimation();
+
 }
 
 
@@ -208,16 +222,18 @@ void init() {
   shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
   
   //Init scene names
-  startSceneFile = string("input/deathbed.scene");
+  startSceneFile = string("input/paradise.scene");
   
   glEnable (GL_BLEND);
   glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   
+  gettimeofday(&timeStart, NULL);
+  gettimeofday(&time_charStart, NULL);
+    
   //initTextures();
 }
 
 int main (int argc, char* argv[]) {
-    FreeImage_Initialise();
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutCreateWindow("HW4: A New Beginning");
@@ -235,6 +251,5 @@ int main (int argc, char* argv[]) {
     }
     printHelp();
     glutMainLoop();
-    FreeImage_DeInitialise();
     return 0;
 }

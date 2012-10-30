@@ -74,6 +74,7 @@ EXTERN object character;
 EXTERN bool use_char;
 EXTERN vec3 char_direction;
 EXTERN vec3 char_position;
+EXTERN int char_frame;
 
 // Variables to set uniform params for lighting fragment shader 
 EXTERN GLuint lightcol ; 

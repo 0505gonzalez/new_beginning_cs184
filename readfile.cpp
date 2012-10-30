@@ -213,14 +213,15 @@ void readfile(const char * filename) {
 		    if(validinput) {
 		      object *obj = &(objects[numobjects]);
 		      for (i = 0; i < 4; i++) {
-			(obj -> ambient)[i] = ambient[i];
-			(obj -> diffuse)[i] = diffuse[i];
-			(obj -> specular)[i] = specular[i];
-			(obj -> emission)[i] = specular[i];
+                  (obj -> ambient)[i] = ambient[i];
+                  (obj -> diffuse)[i] = diffuse[i];
+                  (obj -> specular)[i] = specular[i];
+                  (obj -> emission)[i] = specular[i];
 		      }
 		      obj -> type = modelobj;
 		      obj -> shininess = shininess;
 		      obj -> transform = transfstack.top();
+
 		      if (cmd == "tree1") {
 			obj -> name = ((std::string)("tree1"));
 			obj -> file_path = ((std::string)("images/tree/tree4b_lod1.obj"));
@@ -231,18 +232,17 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/tree/tree4b_lod2.obj"));
 			obj -> shape_sides = 4;
 		      }
-		      
 		      if (cmd == "deadOak") {
 			obj -> name = ((std::string)("deadOak"));
 			obj -> file_path = ((std::string)("images/dead_tree2/tree_oak.obj"));
 			obj -> shape_sides = 3;
-		      
+              }  
 		      if (cmd == "coffeeTable") {
 			obj -> name = ((std::string)("coffeeTable"));
 			obj -> file_path = ((std::string)("images/furniture/table.obj"));
 			obj -> shape_sides = 3;
 		      }
-		      
+
 		      if (cmd == "deadTree1") {
 			obj -> name = ((std::string)("deadTree1"));
 			obj -> file_path = ((std::string)("images/bare_maple_tree/tree.obj"));
@@ -284,7 +284,6 @@ void readfile(const char * filename) {
 		    }
 		  }
 		}
-		}
 		// TEMPORARY: I need an object to play around with.
 		// Input: character <size> --- creates a cube of size "size".
 		else if (cmd == "character") {
@@ -304,6 +303,7 @@ void readfile(const char * filename) {
 		      use_char = true;
 		      char_direction = vec3(values[0], values[1], values[2]);
 		      char_position = vec3(0,0,0); // for simplicity, character starts at origin
+              char_frame = 0;
 		    }
 		}
 
@@ -398,8 +398,8 @@ void loadScene(string sceneFile){
 
 /* Empties scene variables */
 void clearSceneVars(){
-  numused = 0;
-  numobjects = 0;
+    numused = 0;
+    numobjects = 0;
 }
 
 /* Sets all usable textures */
