@@ -158,32 +158,6 @@ void display() {
             glDisableClientState(GL_NORMAL_ARRAY);
         }
     }
-<<<<<<< HEAD
-    
-=======
-    /**
-    glBindTexture(GL_TEXTURE_2D, texNames[0]);
-    glBegin(GL_QUADS);
-     glTexCoord2f(0.0, 0.0);
-     glVertex3f(0.0, 0.0, 0.0);
-     glTexCoord2f(1.0, 0.0);
-     glVertex3f(100.0, 0.0, 0.0);
-     glTexCoord2f(1.0, 1.0);
-     glVertex3f(100.0, 100.0, 0.0);
-     glTexCoord2f(0.0, 1.0);
-     glVertex3f(0.0, 100.0, 0.0);
-    glEnd();
-     **/
->>>>>>> 8700bb5d0fa0fd1ad05b722987fb0847a7372f6e
-
-    if (true) {
-      glUniform4fv(ambientcol, 1, character.ambient);
-      glUniform4fv(diffusecol, 1, character.diffuse);
-      glUniform4fv(specularcol, 1, character.specular);
-      glUniform1f(shininesscol, character.shininess);
-      glLoadMatrixf(&(transf * character.transform)[0][0]);
-      glutSolidCube(character.size);
-    }
 
 	
     glutSwapBuffers();
