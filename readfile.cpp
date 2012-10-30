@@ -291,17 +291,12 @@ void readfile(const char * filename) {
 		    validinput = readvals(s,3,values);
 		    if (validinput) {
 		      object * obj = &(character);
-		      obj -> size = 0.2;
 		      for (i = 0; i < 4; i++) {
-			(obj -> ambient)[i] = ambient[i] ;
-			(obj -> diffuse)[i] = diffuse[i] ;
-			(obj -> specular)[i] = specular[i] ;
-			(obj -> emission)[i] = emission[i] ;
+                  (obj -> ambient)[i] = ambient[i] ;
+                  (obj -> diffuse)[i] = diffuse[i] ;
+                  (obj -> specular)[i] = specular[i] ;
+                  (obj -> emission)[i] = emission[i] ;
 		      }
-		      
-		      obj -> name = ((std::string)("character"));
-			obj -> file_path = ((std::string)("images/character.obj"));
-			obj -> shape_sides = 3;
 		      
 		      obj -> shininess = shininess;
 		      obj -> transform = transfstack.top();
