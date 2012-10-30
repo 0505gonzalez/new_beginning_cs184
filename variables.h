@@ -88,6 +88,7 @@ EXTERN GLuint shininesscol ;
 
 //Scene variables
 static string startSceneFile("");
+static string loadedScene("");
 EXTERN GLfloat backgroundColor[4];
 
 //Obj files - since only few models on screen (20 MB limit), we can only have a few .obj models (textures are expensive). Hence, an array is suitable to store .obj vertices/texture coords/normals.

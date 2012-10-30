@@ -212,7 +212,7 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "deadMaple" || cmd == "deadTreee1" || cmd == "coffeeTable") {
+		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "deadTreee1" || cmd == "coffeeTable") {
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
 		  else {
@@ -239,10 +239,10 @@ void readfile(const char * filename) {
 			obj -> shape_sides = 4;
 		      }
 		      
-		      if (cmd == "deadMaple") {
-			obj -> name = ((std::string)("deadMaple"));
-			obj -> file_path = ((std::string)("images/bare_maple_tree/Large bare maple tree.obj"));
-			obj -> shape_sides = 4;
+		      if (cmd == "deadOak") {
+			obj -> name = ((std::string)("deadOak"));
+			obj -> file_path = ((std::string)("images/dead_tree2/tree_oak.obj"));
+			obj -> shape_sides = 3;
 		      }
 		      
 		      if (cmd == "coffeeTable") {
@@ -386,6 +386,8 @@ void readfile(const char * filename) {
 
 /* Loads a scene file */
 void loadScene(string sceneFile){
+    loadedScene = sceneFile;
+    
     char * fileName;
     fileName = new char[sceneFile.size() + 1];
     fileName[sceneFile.size()] = 0;

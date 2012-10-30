@@ -177,6 +177,7 @@ void collisionProcess(){
 
 /* Initializes textures */
 void initTextures(){
+  //isTex = glGetUniformLocation(shaderprogram, isTex);
   glGenTextures(1, texNames) ;
   
   loadTex("images/textures/deathbed/dirt.pbm", dirttexture);
@@ -189,7 +190,7 @@ void initTextures(){
   glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
   glTexImage2D (GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, dirttexture);
-}
+  }
 
 void init() {
   // Initialize shaders
