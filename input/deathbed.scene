@@ -1,5 +1,5 @@
 # Set the scene size and camera location 
-size 1000 600
+size 1000 700
 elevation 2 45
 camera 0 -3 0.5 0 0 0 0 0 1 30.0
 
@@ -24,7 +24,7 @@ specular 1 1 1 1
   shininess 1
   pushTransform
 	translate 0 0 -0.1
-        scale 50.0 50.0 0.025 
+        scale 30.0 30.0 0.025 
         cube 1.0 
   popTransform
 
@@ -412,7 +412,7 @@ ambient 0.2 0.2 0.2 1
 	ambient 0.1 0.1 0.1 1
 	# Many, many trees...
   	pushTransform 
-		translate 3 0 -15
+		translate 3 0 -9
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
@@ -423,7 +423,7 @@ ambient 0.2 0.2 0.2 1
 		deadOak
   	popTransform
   	pushTransform
-		translate -10.5 0 15
+		translate -10.5 0 13
 		scale 0.25 0.25 0.25
 		rotate 0 1 0 45
 		deadOak
@@ -448,7 +448,7 @@ ambient 0.2 0.2 0.2 1
   	popTransform
 	
 	pushTransform 
-		translate 1 0 -15
+		translate 1 0 -10
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
@@ -459,7 +459,7 @@ ambient 0.2 0.2 0.2 1
 		deadOak
   	popTransform
   	pushTransform
-		translate -16.5 0 10
+		translate -12.5 0 10
 		scale 0.25 0.25 0.25
 		rotate 0 1 0 45
 		deadOak
@@ -485,37 +485,22 @@ ambient 0.2 0.2 0.2 1
   	popTransform
 	
 	pushTransform 
-		translate 24 0 0
+		translate 14 0 0
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate 24 0 4
+		translate 14 0 4
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate 24 0 10
+		translate 14 0 10
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate 24 0 13
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 24 0 17
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 24 0 21
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 24 0 23
+		translate 14 0 13
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
@@ -526,69 +511,33 @@ ambient 0.2 0.2 0.2 1
         	deadOak
   	popTransform
 	pushTransform 
-		translate 24 0 -10
+		translate 14 0 -10
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate 24 0 -13
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 24 0 -17
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 24 0 -21
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 24 0 -24
+		translate 14 0 -13
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
       
-      
-      pushTransform 
-		translate 24 0 24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 22 0 24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 19 0 24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 15 0 24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
 	pushTransform 
 		translate 12 0 10
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate 8 0 24
+		translate 8 0 14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate 4 0 24
+		translate 4 0 14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate 2 0 24
+		translate 2 0 14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
@@ -598,150 +547,85 @@ ambient 0.2 0.2 0.2 1
         	deadOak
   	popTransform
 	pushTransform 
-		translate -4 0 24
+		translate -4 0 14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -9 0 24
+		translate -9 0 14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -13 0 24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -17 0 24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -19 0 24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -22 0 24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -24 0 24
+		translate -13 0 14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	
 	pushTransform 
-		translate -24 0 21
+		translate -14 0 12
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -24 0 17
+		translate -14 0 8
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -24 0 12
+		translate -14 0 5
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -24 0 8
+		translate -14 0 1
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -24 0 5
+		translate -14 0 -1
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -24 0 1
+		translate -14 0 -5
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -24 0 -1
+		translate -14 0 -9
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -24 0 -5
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -24 0 -9
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -24 0 -12
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -24 0 -15
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -24 0 -19
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -24 0 -21
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -24 0 -24
+		translate -14 0 -12
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	
 	pushTransform 
-		translate -22 0 -24
+		translate -12 0 -14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -19 0 -24
+		translate -9 0 -14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -16 0 -24
+		translate -4 0 -14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -12 0 -24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -9 0 -24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate -4 0 -24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 0 0 -24
+		translate 0 0 -14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	
 	pushTransform 
-		translate 4 0 -24
+		translate 4 0 -14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
@@ -751,17 +635,7 @@ ambient 0.2 0.2 0.2 1
         	deadOak
   	popTransform
 	pushTransform 
-		translate 11 0 -24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 15 0 -24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
-	pushTransform 
-		translate 18 0 -24
+		translate 11 0 -14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
@@ -770,27 +644,22 @@ ambient 0.2 0.2 0.2 1
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
-	pushTransform 
-		translate 23 0 -24
-		scale 0.35 0.35 0.30
-        	deadOak
-  	popTransform
 	
 	
 #random trees
 	pushTransform 
-		translate -19 0 -14
+		translate -9 0 -14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	
 	pushTransform 
-		translate 14 0 17
+		translate 14 0 6
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
 	pushTransform 
-		translate -10 0 15
+		translate -10 0 12
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
@@ -804,8 +673,44 @@ ambient 0.2 0.2 0.2 1
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
+	pushTransform
+		translate 14 0 -4
+		scale 0.35 0.35 0.30
+        	deadOak
+  	popTransform
+	pushTransform
+		translate 14 0 -6
+		scale 0.35 0.35 0.30
+        	deadOak
+  	popTransform
 	pushTransform 
-		translate 10 0 -17
+		translate 8 0 -13
+		scale 0.35 0.35 0.30
+        	deadOak
+  	popTransform
+	pushTransform 
+		translate 6 0 -13
+		scale 0.35 0.35 0.30
+        	deadOak
+  	popTransform
+	ambient 1 1 1 1
+	pushTransform
+		translate -7 0 14
+		scale 0.35 0.35 0.30
+        	deadOak
+  	popTransform
+	pushTransform
+		translate -1 0 14
+		scale 0.35 0.35 0.30
+        	deadOak
+  	popTransform
+	pushTransform
+		translate 5 0 13
+		scale 0.35 0.35 0.30
+        	deadOak
+  	popTransform
+	pushTransform
+		translate 10 0 14
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform

@@ -236,7 +236,7 @@ void readfile(const char * filename) {
 			obj -> name = ((std::string)("deadOak"));
 			obj -> file_path = ((std::string)("images/dead_tree2/tree_oak.obj"));
 			obj -> shape_sides = 3;
-		      
+		      }
 		      if (cmd == "coffeeTable") {
 			obj -> name = ((std::string)("coffeeTable"));
 			obj -> file_path = ((std::string)("images/furniture/table.obj"));
@@ -284,7 +284,7 @@ void readfile(const char * filename) {
 		    }
 		  }
 		}
-		}
+		
 		// TEMPORARY: I need an object to play around with.
 		// Input: character <size> --- creates a cube of size "size".
 		else if (cmd == "character") {
