@@ -717,13 +717,30 @@ ambient 0.2 0.2 0.2 1
 	
 	#skeleton
 	pushTransform
-		translate 7 0.45 7
+		translate 8 0.45 0
 		scale 0.01 0.01 0.01
         	skeleton
-  	popTransform
-	
-
   popTransform
+	
+#Desk
+  ambient 0.5 0.5 0.5 1
+  pushTransform
+    translate 2.5 -0.2 0.5
+    rotate 1 0 0 -90
+    rotate 0 0 1 90
+    scale 0.00075 0.00075 0.00075
+          desk
+  popTransform
+#TV
+  ambient 0.1 0.1 0.1 1
+  pushTransform
+    translate 2.5 0.35 0.55
+    rotate 0 1 0 -90
+    scale 0.08 0.08 0.08
+          television
+  popTransform
+
+popTransform
 
 pushTransform
   ambient 0.5 0.5 0.5 1

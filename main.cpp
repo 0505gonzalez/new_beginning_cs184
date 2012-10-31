@@ -24,9 +24,10 @@ bool * key_states = new bool[256];
 bool texturedAlready = false;
 
 //Animation Variables:
-struct timeval timeStart,timeEnd,time_charStart,time_charEnd, time_skeletonStart, time_skeletonEnd;
+struct timeval timeStart,timeEnd,time_charStart,time_charEnd, time_skeletonStart, time_skeletonEnd, texStart, texEnd;
 int time_start, time_end;
 int delta_char_frame = 1;
+bool pauseAnimations;
 
 void display(void) ;  // prototype for display function.
 void collisionProcess(void);
@@ -84,10 +85,24 @@ void handleAnimation() {
     }
 
     gettimeofday(&time_skeletonEnd, NULL);
-    if((time_skeletonEnd.tv_sec - time_skeletonStart.tv_sec)*1000000.0+(time_skeletonEnd.tv_usec - time_skeletonStart.tv_usec) > 50000){
-      std::cout << "Animating process" << std::endl;
+    if((time_skeletonEnd.tv_sec - time_skeletonStart.tv_sec)*1000000.0+(time_skeletonEnd.tv_usec - time_skeletonStart.tv_usec) > 20000 && loadedSceneIndex == 0 && !pauseAnimations){
+      vec3 axisOrigin = glm::vec3(0, 0, 1);
+      mat4 rotOrigin = glm::mat4(Transform::rotate(-0.125, axisOrigin));
+      rotOrigin = glm::transpose(rotOrigin);
+
+      vec3 axisObj = glm::vec3(0, 1, 0);
+      mat4 rotObj = glm::mat4(Transform::rotate(-0.008, axisObj));
+      rotObj = glm::transpose(rotObj);
+
+      objects[skeletonIndex].transform = rotOrigin * (objects[skeletonIndex].transform) * rotObj; 
+
+      gettimeofday(&time_skeletonStart, NULL);
     }
-    
+
+    gettimeofday(&texEnd, NULL);
+    if(!pauseAnimations){
+      texAnimInterval = 2*(texEnd.tv_sec - texStart.tv_sec)%5;
+    }
 }
 
 
@@ -168,6 +183,15 @@ void idleFunc ( ) {
 
 void keyUp (unsigned char key, int x, int y) {
     key_states[key] = false;
+
+    /* Single key presses */
+    if (key == 't') {
+            textureOn = !textureOn;
+    }
+
+    if (key == 'p') {
+            pauseAnimations = !pauseAnimations;
+    }
 }
 
 void mouse(int x, int y) {
@@ -196,6 +220,7 @@ void collisionProcess(){
 
 /* Initializes textures */
 void initTextures(){
+  textureOn = true;
   isTex = glGetUniformLocation(shaderprogram,"isTex") ;
         
   loadTex("images/textures/deathbed/washington.pbm", washington);
@@ -206,7 +231,7 @@ void initTextures(){
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
 
   glEnable(GL_TEXTURE_2D) ; 
-  glGenTextures( 3, texNames);
+  glGenTextures(7, texNames);
   glBindTexture (GL_TEXTURE_2D, texNames[0]) ; 
 				
   glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, washington) ;
@@ -237,6 +262,73 @@ void initTextures(){
 				
   glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, fireplace) ;
   glDisable(GL_TEXTURE_2D) ;
+
+
+  /* Animated texture loading */
+  loadTex("images/textures/deathbed/animated/0.pbm", anim0);
+  
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[3]) ; 
+        
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, anim0) ;
+  glDisable(GL_TEXTURE_2D) ;
+
+  loadTex("images/textures/deathbed/animated/1.pbm", anim1);
+  
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[4]) ; 
+        
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, anim1) ;
+  glDisable(GL_TEXTURE_2D) ;
+
+  loadTex("images/textures/deathbed/animated/2.pbm", anim2);
+  
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[5]) ; 
+        
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, anim2) ;
+  glDisable(GL_TEXTURE_2D) ;
+
+  loadTex("images/textures/deathbed/animated/3.pbm", anim3);
+  
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[6]) ; 
+        
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, anim3) ;
+  glDisable(GL_TEXTURE_2D) ;
+
+  loadTex("images/textures/deathbed/animated/4.pbm", anim4);
+
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[7]) ; 
+        
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, anim4) ;
+  glDisable(GL_TEXTURE_2D) ;
 }
 
 void init() {
@@ -265,11 +357,13 @@ void init() {
   gettimeofday(&timeStart, NULL);
   gettimeofday(&time_charStart, NULL);
   gettimeofday(&time_skeletonStart, NULL);
+  gettimeofday(&texStart, NULL);
     
   initTextures();
   
   //Animation transitioning
   isTransitioning = false;
+  pauseAnimations = false;
 }
 
 int main (int argc, char* argv[]) {

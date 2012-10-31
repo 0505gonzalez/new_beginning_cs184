@@ -204,7 +204,9 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "deadTree1" || cmd == "coffeeTable" || cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton") {
+		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || 
+            cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "coffeeTable" || 
+            cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton" || cmd == "desk" || cmd == "television") {
 
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
@@ -245,12 +247,6 @@ void readfile(const char * filename) {
 			obj -> shape_sides = 3;
 		      }
 
-		      if (cmd == "deadTree1") {
-			obj -> name = ((std::string)("deadTree1"));
-			obj -> file_path = ((std::string)("images/bare_maple_tree/tree.obj"));
-			obj -> shape_sides = 4;
-		      }
-
 		      if (cmd == "apple") {
 			obj -> name = ((std::string)("apple"));
 			obj -> file_path = ((std::string)("images/apple/apple-OBJ.obj"));
@@ -288,6 +284,17 @@ void readfile(const char * filename) {
             skeletonIndex = numobjects;
             std::cout << "skeleton Index: " << skeletonIndex <<std::endl;
 		      }
+
+               if (cmd == "desk") {
+            obj -> name = ((std::string)("desk"));
+            obj -> file_path = ((std::string)("images/desk.obj"));
+            obj -> shape_sides = 3;
+              }
+              if (cmd == "television") {
+            obj -> name = ((std::string)("television"));
+            obj -> file_path = ((std::string)("images/television.obj"));
+            obj -> shape_sides = 4;
+              }
 		      ++numobjects;
 		      ++num_obj_models;
 		    }
@@ -395,9 +402,9 @@ void readfile(const char * filename) {
 /* Loads a scene file */
 void loadScene(string sceneFile){
     if(loadedSceneIndex == 0){
-	loadedSceneIndex = 1;
+	   loadedSceneIndex = 1;
     }else{
-	loadedSceneIndex = 0;
+	   loadedSceneIndex = 0;
     }
     
     char * fileName;

@@ -19,18 +19,6 @@ using namespace std ;
 #include "variables.h"
 #include "readfile.h"
 #include "ModelObj.h"
-void setTex(GLubyte textureLocation[256][256][3]);
-
-void setTex(GLubyte textureLocation[256][256][3]){
-    glEnable(GL_TEXTURE_2D) ; 
-    glBindTexture (GL_TEXTURE_2D, texNames[0]) ; 
-				
-    glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, textureLocation) ;
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
-}
 
 // New helper transformation function to transform vector by modelview
 // May be better done using newer glm functionality.
@@ -175,38 +163,53 @@ void display() {
     
     
     /** Textured objects **/
-    glUniform1i(isTex,1) ; //Enable Texturing
+
+    if(textureOn){
+        glUniform1i(isTex,1) ;
+    }else{
+        glUniform1i(isTex,0) ;
+    }
+    
     
     //Deathbed tectured objects
-    std::cout << "loaded index " << loadedSceneIndex << std::endl;
     if(loadedSceneIndex == 0){
-	setTex(washington);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 1.0); glVertex3f(-200.0, 40.0, 10.0);
-		glTexCoord2f(1.0, 1.0); glVertex3f(-160.0, 40.0, 10.0);
-		glTexCoord2f(1.0, 0.0); glVertex3f(-160.0, 60.0, 10.0);
-		glTexCoord2f(0.0, 0.0); glVertex3f(-200.0, 60.0, 10.0);
-	glEnd();
-	glFlush();
-	
-	
-	setTex(spiral);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 1.0); glVertex3f(725.0, 0.0, 765.0);
-		glTexCoord2f(1.0, 1.0); glVertex3f(875.0, 0.0, 765.0);
-		glTexCoord2f(1.0, 0.0); glVertex3f(875.0, 100.0, 765.0);
-		glTexCoord2f(0.0, 0.0); glVertex3f(725.0, 100.0, 765.0);
-	glEnd();
-	glFlush();
-	
-	setTex(fireplace);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 1.0); glVertex3f(-130.0, 0.0, 5.0);
-		glTexCoord2f(1.0, 1.0); glVertex3f(-95.0, 0.0, 5.0);
-		glTexCoord2f(1.0, 0.0); glVertex3f(-95.0, 30.0, 5.0);
-		glTexCoord2f(0.0, 0.0); glVertex3f(-130.0, 30.0, 5.0);
-	glEnd();
-	glFlush();
+
+        //Washington
+    	glBindTexture (GL_TEXTURE_2D, texNames[0]) ; 
+    	glBegin(GL_QUADS);
+    		glTexCoord2f(0.0, 1.0); glVertex3f(-200.0, 40.0, 10.0);
+    		glTexCoord2f(1.0, 1.0); glVertex3f(-160.0, 40.0, 10.0);
+    		glTexCoord2f(1.0, 0.0); glVertex3f(-160.0, 60.0, 10.0);
+    		glTexCoord2f(0.0, 0.0); glVertex3f(-200.0, 60.0, 10.0);
+    	glEnd();
+    	
+        //Spiral
+    	glBindTexture (GL_TEXTURE_2D, texNames[1]) ; 
+    	glBegin(GL_QUADS);
+    		glTexCoord2f(0.0, 1.0); glVertex3f(725.0, 0.0, 765.0);
+    		glTexCoord2f(1.0, 1.0); glVertex3f(875.0, 0.0, 765.0);
+    		glTexCoord2f(1.0, 0.0); glVertex3f(875.0, 100.0, 765.0);
+    		glTexCoord2f(0.0, 0.0); glVertex3f(725.0, 100.0, 765.0);
+    	glEnd();
+    	
+        //Fireplace
+    	glBindTexture (GL_TEXTURE_2D, texNames[2]) ; 
+    	glBegin(GL_QUADS);
+    		glTexCoord2f(0.0, 1.0); glVertex3f(-130.0, 0.0, 5.0);
+    		glTexCoord2f(1.0, 1.0); glVertex3f(-95.0, 0.0, 5.0);
+    		glTexCoord2f(1.0, 0.0); glVertex3f(-95.0, 30.0, 5.0);
+    		glTexCoord2f(0.0, 0.0); glVertex3f(-130.0, 30.0, 5.0);
+    	glEnd();
+
+
+        //Animated computer screen
+        glBindTexture (GL_TEXTURE_2D, texNames[texAnimInterval + 3]) ; 
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(30.5, 40.0, -200.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(30.5, 40.0, -166.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(30.5, 62.0, -166.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(30.5, 62.0, -200.0);
+        glEnd();
     }
     
     glUniform1i(isTex, 0) ; // Other items aren't textured 

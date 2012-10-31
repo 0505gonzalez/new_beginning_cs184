@@ -93,16 +93,27 @@ EXTERN GLuint loadedSceneIndex;
 EXTERN GLfloat backgroundColor[4];
 
 //Obj files - since only few models on screen (20 MB limit), we can only have a few .obj models (textures are expensive). Hence, an array is suitable to store .obj vertices/texture coords/normals.
-const int max_obj_models = 10; // per scene.
+const int max_obj_models = 12; // per scene.
 EXTERN int num_obj_models;
 
 //Textures
+EXTERN bool textureOn;
+
 EXTERN GLuint dirt;
 EXTERN GLubyte washington[256][256][3] ;
 EXTERN GLubyte spiral[256][256][3] ;
 EXTERN GLubyte fireplace[256][256][3] ;
 EXTERN GLuint texNames[1] ; 
 EXTERN GLuint isTex ; 
+
+EXTERN GLubyte anim0[256][256][3] ;
+EXTERN GLubyte anim1[256][256][3] ;
+EXTERN GLubyte anim2[256][256][3] ;
+EXTERN GLubyte anim3[256][256][3] ;
+EXTERN GLubyte anim4[256][256][3] ;
+
+//Animated tex time variable
+EXTERN GLuint texAnimInterval;
 
 //Used for transitioning animation
 EXTERN bool isTransitioning;
