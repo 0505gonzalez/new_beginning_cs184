@@ -13,8 +13,8 @@
 varying vec4 color ;
 varying vec3 mynormal ; 
 varying vec4 myvertex ;
-//uniform int istex ;
-//uniform sampler2d tex;
+uniform int isTex ;
+uniform sampler2D tex;
 
 const int numLights = 10 ; 
 uniform bool enablelighting ; // are we lighting at all (global).
@@ -35,11 +35,10 @@ uniform float shininess ;
 
 void main (void) 
 {
-   //if(isTex > 0){
-      //glFragColor = texture2d(tex, gl_Tex_Coord[0].st);
-   //}
-    //else
-    if (enablelighting) {       
+   if(isTex > 0){
+      gl_FragColor = texture2D(tex, gl_TexCoord[0].st);
+   }
+    else if (enablelighting) {       
         
         vec4 finalcolor ; 
 

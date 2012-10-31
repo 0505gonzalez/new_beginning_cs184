@@ -21,9 +21,10 @@ using namespace std;
 
 bool * key_states = new bool[256];
 
+bool texturedAlready = false;
 
 //Animation Variables:
-struct timeval timeStart,timeEnd,time_charStart,time_charEnd;
+struct timeval timeStart,timeEnd,time_charStart,time_charEnd, time_skeletonStart, time_skeletonEnd;
 int time_start, time_end;
 int delta_char_frame = 1;
 
@@ -80,6 +81,11 @@ void handleAnimation() {
         }
         char_frame += delta_char_frame;
         gettimeofday(&time_charStart, NULL);
+    }
+
+    gettimeofday(&time_skeletonEnd, NULL);
+    if((time_skeletonEnd.tv_sec - time_skeletonStart.tv_sec)*1000000.0+(time_skeletonEnd.tv_usec - time_skeletonStart.tv_usec) > 50000){
+      std::cout << "Animating process" << std::endl;
     }
     
 }
@@ -190,20 +196,48 @@ void collisionProcess(){
 
 /* Initializes textures */
 void initTextures(){
-  //isTex = glGetUniformLocation(shaderprogram, isTex);
-  glGenTextures(1, texNames) ;
+  isTex = glGetUniformLocation(shaderprogram,"isTex") ;
+        
+  loadTex("images/textures/deathbed/washington.pbm", washington);
   
-  loadTex("images/textures/deathbed/dirt.pbm", dirttexture);
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glGenTextures( 3, texNames);
+  glBindTexture (GL_TEXTURE_2D, texNames[0]) ; 
+				
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, washington) ;
+  glDisable(GL_TEXTURE_2D) ;
   
-  glBindTexture(GL_TEXTURE_2D, texNames[0]);
-  glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-  glTexImage2D (GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, dirttexture);
-  }
+  loadTex("images/textures/deathbed/spiral.pbm", spiral);
+  
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[1]) ; 
+				
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, spiral) ;
+  glDisable(GL_TEXTURE_2D) ;
+  
+  loadTex("images/textures/deathbed/fireplace.pbm", fireplace);
+  
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[2]) ; 
+				
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, fireplace) ;
+  glDisable(GL_TEXTURE_2D) ;
+}
 
 void init() {
 
@@ -222,15 +256,20 @@ void init() {
   shininesscol = glGetUniformLocation(shaderprogram,"shininess") ;
   
   //Init scene names
-  startSceneFile = string("input/paradise.scene");
+  loadedSceneIndex = 1; //Default to one, will change when scene is first loaded
+  startSceneFile = string("input/deathbed.scene");
   
   glEnable (GL_BLEND);
   glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   
   gettimeofday(&timeStart, NULL);
   gettimeofday(&time_charStart, NULL);
+  gettimeofday(&time_skeletonStart, NULL);
     
-  //initTextures();
+  initTextures();
+  
+  //Animation transitioning
+  isTransitioning = false;
 }
 
 int main (int argc, char* argv[]) {
