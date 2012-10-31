@@ -60,6 +60,11 @@ void reshape(int width, int height) {
 
 void printHelp() {
     std::cout << "\npress 'h' to print this message again.\n";
+    std::cout << "press 'w' to advance the character forward.\n";
+    std::cout << "press 's' to advance the character backward.\n";
+    std::cout << "press 'a' to move the character to the left.\n";
+    std::cout << "press 'd' to move the character to the right.\n";
+    std::cout << "move with mouse to change the camera view.\n";
 }
 
 
@@ -71,16 +76,6 @@ void keyboard(unsigned char key, int x, int y) {
 
 
 void handleAnimation() {
-    gettimeofday(&time_charEnd, NULL);
-    if ((time_charEnd.tv_sec - time_charStart.tv_sec)*1000000.0+(time_charEnd.tv_usec - time_charStart.tv_usec) > 50000) {
-        if (char_frame == 6) {
-            delta_char_frame = -1;
-        } else if (char_frame == -6) {
-            delta_char_frame = 1;
-        }
-        char_frame += delta_char_frame;
-        gettimeofday(&time_charStart, NULL);
-    }
     
 }
 
@@ -99,31 +94,46 @@ void idleFunc ( ) {
         if (key_states[27]) { // Escape to quit                                                                                                                                                                   
             exit(0);
         }
-        if (key_states['w']) {
-            character.transform = glm::transpose(Transform::translate   (c_move_dir.x, c_move_dir.y, c_move_dir.z))*character.transform;
-            eye += c_move_dir;
-            center += c_move_dir;
-            char_position += c_move_dir;
-        }
-        if (key_states['s']) {
-            character.transform = glm::transpose(Transform::translate(-c_move_dir.x, -c_move_dir.y, -c_move_dir.z))*character.transform;
-            eye -= c_move_dir;
-            center -= c_move_dir;
-            char_position -= c_move_dir;
-        }
-        if (key_states['a']) {
-            vec3 left_vec = vec3(-c_move_dir.y, c_move_dir.x, c_move_dir.z);
-            character.transform = glm::transpose(Transform::translate(-c_move_dir.y, c_move_dir.x, c_move_dir.z))*character.transform;
-            eye += left_vec;
-            center += left_vec;
-            char_position += left_vec;
-        }
-        if (key_states['d']) {
-            vec3 right_vec = vec3(c_move_dir.y, -c_move_dir.x, c_move_dir.z);
-            character.transform = glm::transpose(Transform::translate(c_move_dir.y, -c_move_dir.x, c_move_dir.z))*character.transform;
-            eye += right_vec;
-            center += right_vec;
-            char_position += right_vec;
+        if (key_states['w'] || key_states['a'] || key_states['s'] || key_states['d']) {
+            gettimeofday(&time_charEnd, NULL);
+            if ((time_charEnd.tv_sec - time_charStart.tv_sec)*1000000.0+(time_charEnd.tv_usec - time_charStart.tv_usec) > 50000) {
+                if (char_frame == 6) {
+                    delta_char_frame = -1;
+                } else if (char_frame == -6) {
+                    delta_char_frame = 1;
+                }
+                char_frame += delta_char_frame;
+                gettimeofday(&time_charStart, NULL);
+            }
+            if (key_states['w']) {
+                character.transform = glm::transpose(Transform::translate   (c_move_dir.x, c_move_dir.y, c_move_dir.z))*character.transform;
+                eye += c_move_dir;
+                center += c_move_dir;
+                char_position += c_move_dir;
+            }
+            if (key_states['s']) {
+                character.transform = glm::transpose(Transform::translate(-c_move_dir.x, -c_move_dir.y, -c_move_dir.z))*character.transform;
+                eye -= c_move_dir;
+                center -= c_move_dir;
+                char_position -= c_move_dir;
+            }
+            if (key_states['a']) {
+                vec3 left_vec = vec3(-c_move_dir.y, c_move_dir.x, c_move_dir.z);
+                character.transform = glm::transpose(Transform::translate(-c_move_dir.y, c_move_dir.x, c_move_dir.z))*character.transform;
+                eye += left_vec;
+                center += left_vec;
+                char_position += left_vec;
+            }
+            if (key_states['d']) {
+                vec3 right_vec = vec3(c_move_dir.y, -c_move_dir.x, c_move_dir.z);
+                character.transform = glm::transpose(Transform::translate(c_move_dir.y, -c_move_dir.x, c_move_dir.z))*character.transform;
+                eye += right_vec;
+                center += right_vec;
+                char_position += right_vec;
+            }
+        } else {
+            char_frame = 0;
+            delta_char_frame = 1;
         }
     
         distance_eye_to_eyeinit = eye - eyeinit;

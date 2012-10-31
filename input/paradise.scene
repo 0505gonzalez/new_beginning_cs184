@@ -3,7 +3,7 @@ size 1000 700
 backgroundColor 0 0.8 0.8 0
 
 elevation 2 45
-camera 0 -3 0.5 0 0 0 0 0 1 30.0
+camera 0 -3 1.5 0 0 0 0 0 1 30.0
 
 light 0 35 2.5 1 1 0.6 0 1
 
@@ -661,10 +661,25 @@ pushTransform
   specular 0.2 0.5 0.2 1
   shininess 3
   pushTransform
-    translate 0 0 0.015
-    scale 40.2 40.2 2
+    translate -4 0 0.015
+    scale 32.2 40.2 1.01
     translate 0 0 -0.5
     cube 1
+  popTransform
+  pushTransform
+    translate 18.5 0 0.015
+    scale 3.2 40.2 1.01
+    translate 0 0 -0.5
+    cube 1
+  popTransform
+  ambient 0.7 0.7 0.5 1
+  diffuse 0.7 0.7 0.5 1
+  specular 0 0 0 1
+  shininess 3
+  pushTransform
+    translate 14.5 0 0.015
+    scale 4 1 0.5
+    gorge
   popTransform
 
 # Character - blue cube
@@ -672,7 +687,118 @@ pushTransform
   diffuse 0.9 0.75 0.6 1
   specular 0 0 0 1
   pushTransform
+        translate 0 0 -0.01
        	character 0 1 0
+  popTransform
+  
+# Bridge
+  ambient 0.8 0.8 0.8 1
+  diffuse 0.13 0.13 0.13 1
+  specular 0.8 0.8 0.8 1
+  shininess 2
+  pushTransform
+        translate 17 0 0.01
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+  popTransform
+  pushTransform
+        translate 12.2 0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 12.2 -0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 16.8 0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 16.8 -0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
   popTransform
 
 # Fence Border
@@ -719,62 +845,6 @@ pushTransform
   pushTransform
     translate 17 20 0.015
     fence_post
-  popTransform
-  pushTransform
-    translate 16.5 20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 16.5 20 0.315
-    fence_rail
-  popTransform
-  pushTransform
-    translate 16 20 0.015
-    fence_post
-  popTransform
-  pushTransform
-    translate 15.5 20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 15.5 20 0.315
-    fence_rail
-  popTransform
-  pushTransform
-    translate 15 20 0.015
-    fence_post
-  popTransform
-  pushTransform
-    translate 14.5 20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 14.5 20 0.315
-    fence_rail
-  popTransform
-  pushTransform
-    translate 14 20 0.015
-    fence_post
-  popTransform
-  pushTransform
-    translate 13.5 20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 13.5 20 0.315
-    fence_rail
-  popTransform
-  pushTransform
-    translate 13 20 0.015
-    fence_post
-  popTransform
-  pushTransform
-    translate 12.5 20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 12.5 20 0.315
-    fence_rail
   popTransform
   pushTransform
     translate 12 20 0.015
@@ -2107,62 +2177,6 @@ pushTransform
   pushTransform
     translate 12 -20 0.015
     fence_post
-  popTransform
-  pushTransform
-    translate 12.5 -20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 12.5 -20 0.315
-    fence_rail
-  popTransform
-  pushTransform
-    translate 13 -20 0.015
-    fence_post
-  popTransform
-  pushTransform
-    translate 13.5 -20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 13.5 -20 0.315
-    fence_rail
-  popTransform
-  pushTransform
-    translate 14 -20 0.015
-    fence_post
-  popTransform
-  pushTransform
-    translate 14.5 -20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 14.5 -20 0.315
-    fence_rail
-  popTransform
-  pushTransform
-    translate 15 -20 0.015
-    fence_post
-  popTransform
-  pushTransform
-    translate 15.5 -20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 15.5 -20 0.315
-    fence_rail
-  popTransform
-  pushTransform
-    translate 16 -20 0.015
-    fence_post
-  popTransform
-  pushTransform
-    translate 16.5 -20 0.115
-    fence_rail
-  popTransform
-  pushTransform
-    translate 16.5 -20 0.315
-    fence_rail
   popTransform
   pushTransform
     translate 17 -20 0.015

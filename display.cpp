@@ -170,23 +170,27 @@ void display() {
         // Body
         glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0,0,0.4)) )[0][0]);
         glutSolidSphere(0.08, 20, 20);
-        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(-0.03,0,0.03)) )[0][0]);
+        
+        // Feet
+        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(-0.03,0,0.12)) * glm::transpose(mat4(Transform::rotate(0 - char_frame*5, glm::vec3(1,0,0)))) * glm::transpose(Transform::translate(0, 0, -0.08)))[0][0]);
         glutSolidSphere(0.015, 20, 20);
-        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0.03,0,0.03)) )[0][0]);
+        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0.03,0,0.12)) * glm::transpose(mat4(Transform::rotate(0 + char_frame*5, glm::vec3(1,0,0)))) * glm::transpose(Transform::translate(0, 0, -0.08)))[0][0]);
         glutSolidSphere(0.015, 20, 20);
         
+        
+        // Neck
         glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0,0,0.15)) )[0][0]);
         GLUquadricObj * quad_obj = gluNewQuadric();
         gluCylinder(quad_obj, 0.01, 0.01, 0.2, 10, 10);
         
-        
+        // Hands
         glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(-0.045,-0.02,0.26)) * glm::transpose(mat4(Transform::rotate(20, glm::vec3(0,0,1)))) * glm::transpose(mat4(Transform::rotate(55 + char_frame * 5, glm::vec3(1,0,0)))) * glm::transpose(Transform::translate(0, 0, -0.21)))[0][0]);
         glutSolidSphere(0.015, 20, 20);
         glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0.045,-0.02,0.26)) * glm::transpose(mat4(Transform::rotate(-20, glm::vec3(0,0,1)))) * glm::transpose(mat4(Transform::rotate(55 - char_frame * 5, glm::vec3(1,0,0)))) * glm::transpose(Transform::translate(0, 0, -0.21)))[0][0]);
         glutSolidSphere(0.015, 20, 20);
 
 
-        
+        // Arms
         glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(-0.045,-0.02,0.26)) * glm::transpose(mat4(Transform::rotate(20, glm::vec3(0,0,1)))) * glm::transpose(mat4(Transform::rotate(55+char_frame*5, glm::vec3(1,0,0)))) * glm::transpose(Transform::translate(0, 0, -0.2)))[0][0]);
             
         quad_obj = gluNewQuadric();
@@ -213,17 +217,21 @@ void display() {
         glUniform4fv(specularcol, 1, character.specular);
         glUniform1f(shininesscol, character.shininess);
         
-        // Torso
+        // Neck Piece
         glLoadMatrixf(&(transf *character.transform * glm::transpose(Transform::translate(0,0,0.28)))[0][0]);
         quad_obj = gluNewQuadric();
         gluCylinder(quad_obj, 0.07, 0.01, 0.02, 10, 10);
+        
+        // Torso
         glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0,0,0.11)))[0][0]);
         quad_obj = gluNewQuadric();
         gluCylinder(quad_obj, 0.07, 0.07, 0.18, 10, 10);
-        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(-0.03,0,0.03)))[0][0]);
+        
+        // Legs
+        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(-0.03,0,0.12)) * glm::transpose(mat4(Transform::rotate(0 - char_frame*5, glm::vec3(1,0,0)))) * glm::transpose(Transform::translate(0.0, 0.0, -0.08)))[0][0]);
         quad_obj = gluNewQuadric();
         gluCylinder(quad_obj, 0.02, 0.03, 0.08, 10, 10);
-        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0.03,0,0.03)))[0][0]);
+        glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0.03,0,0.12))  * glm::transpose(mat4(Transform::rotate(0 + char_frame*5, glm::vec3(1,0,0)))) * glm::transpose(Transform::translate(0.0, 0.0, -0.08)))[0][0]);
         quad_obj = gluNewQuadric();
         gluCylinder(quad_obj, 0.02, 0.03, 0.08, 10, 10);
         
@@ -237,7 +245,7 @@ void display() {
         gluDisk(quad_obj, 0, 0.06, 20, 20);
         glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(0.0,0.0,0.46)))[0][0]);
         quad_obj = gluNewQuadric();
-        gluDisk(quad_obj, 0, 0.1, 20, 20);
+        gluDisk(quad_obj, 0, 0.12, 20, 20);
         
         // Eyes, though can't see
         glLoadMatrixf(&(transf * character.transform * glm::transpose(Transform::translate(-0.03,.075,0.41)) )[0][0]);
