@@ -89,15 +89,21 @@ EXTERN GLuint shininesscol ;
 
 //Scene variables
 static string startSceneFile("");
-static string loadedScene("");
+EXTERN GLuint loadedSceneIndex;
 EXTERN GLfloat backgroundColor[4];
 
 //Obj files - since only few models on screen (20 MB limit), we can only have a few .obj models (textures are expensive). Hence, an array is suitable to store .obj vertices/texture coords/normals.
-const int max_obj_models = 10; // per scene.
+const int max_obj_models = 25; 
 EXTERN int num_obj_models;
 
 //Textures
 EXTERN GLuint dirt;
-EXTERN GLubyte dirttexture[256][256][3] ; // ** NEW ** texture (from grsites.com)
-EXTERN GLuint texNames[1] ; // ** NEW ** texture buffer
-EXTERN GLuint istex ;  // ** NEW ** blend parameter for texturing
+EXTERN GLubyte washington[256][256][3] ;
+EXTERN GLubyte spiral[256][256][3] ;
+EXTERN GLubyte fireplace[256][256][3] ;
+EXTERN GLuint texNames[1] ; 
+EXTERN GLuint isTex ; 
+
+//Used for transitioning animation
+EXTERN bool isTransitioning;
+EXTERN GLuint skeletonIndex;

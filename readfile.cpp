@@ -285,6 +285,8 @@ void readfile(const char * filename) {
 			obj -> name = ((std::string)("skeleton"));
 			obj -> file_path = ((std::string)("images/skeleton.obj"));
 			obj -> shape_sides = 3;
+            skeletonIndex = numobjects;
+            std::cout << "skeleton Index: " << skeletonIndex <<std::endl;
 		      }
               if (cmd == "gorge") {
             obj -> name = ((std::string)("gorge"));
@@ -307,8 +309,6 @@ void readfile(const char * filename) {
 		  }
 		}
 
-		// TEMPORARY: I need an object to play around with.
-		// Input: character <size> --- creates a cube of size "size".
 		else if (cmd == "character") {
 		    validinput = readvals(s,3,values);
 		    if (validinput) {
@@ -407,7 +407,11 @@ void readfile(const char * filename) {
 
 /* Loads a scene file */
 void loadScene(string sceneFile){
-    loadedScene = sceneFile;
+    if(loadedSceneIndex == 0){
+	loadedSceneIndex = 1;
+    }else{
+	loadedSceneIndex = 0;
+    }
     
     char * fileName;
     fileName = new char[sceneFile.size() + 1];

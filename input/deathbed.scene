@@ -1,7 +1,7 @@
 # Set the scene size and camera location 
 size 1000 700
 elevation 2 45
-camera 0 -3 0.5 0 0 0 0 0 1 30.0
+camera 0 -3 0.5 0 0 0 0 0 1 45.0
 
 # lights.  A single point and directional light
 # Note that your program must support up to 10 lights
@@ -714,12 +714,14 @@ ambient 0.2 0.2 0.2 1
         	deadOak
   	popTransform
 	
+	
+	#skeleton
 	pushTransform
 		translate 7 0.45 7
 		scale 0.01 0.01 0.01
         	skeleton
   	popTransform
-      
+	
 
   popTransform
 
