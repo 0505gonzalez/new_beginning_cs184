@@ -221,6 +221,7 @@ void collisionProcess(){
 void initTextures(){
   textureOn = true;
   isTex = glGetUniformLocation(shaderprogram,"isTex") ;
+  isBump = glGetUniformLocation(shaderprogram,"isBump") ;
         
   loadTex("images/textures/deathbed/washington.pbm", washington);
   
@@ -230,7 +231,7 @@ void initTextures(){
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
 
   glEnable(GL_TEXTURE_2D) ; 
-  glGenTextures(7, texNames);
+  glGenTextures(9, texNames);
   glBindTexture (GL_TEXTURE_2D, texNames[0]) ; 
 				
   glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, washington) ;
@@ -328,6 +329,34 @@ void initTextures(){
         
   glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, anim4) ;
   glDisable(GL_TEXTURE_2D) ;
+
+
+  loadTex("images/textures/deathbed/animated/4.pbm", anim4);
+
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[8]) ; 
+        
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, anim4) ;
+  glDisable(GL_TEXTURE_2D) ;
+
+  loadTex("images/textures/deathbed/normalTextures/brickBumps.pbm", bump0);
+
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR) ; 
+  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR) ; 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT) ;
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT) ;
+
+  glEnable(GL_TEXTURE_2D) ; 
+  glBindTexture (GL_TEXTURE_2D, texNames[8]) ; 
+        
+  glTexImage2D(GL_TEXTURE_2D,0,GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, bump0) ;
+  glDisable(GL_TEXTURE_2D) ;
+
 }
 
 void init() {

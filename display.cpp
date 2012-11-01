@@ -211,9 +211,124 @@ void display() {
             glTexCoord2f(0.0, 0.0); glVertex3f(30.5, 62.0, -200.0);
         glEnd();
     }
-    
+
     glUniform1i(isTex, 0) ; // Other items aren't textured 
     /** End textured objects **/
+
+    /*Bump mappings */
+    glUniform1i(isBump, 1);
+    glBindTexture (GL_TEXTURE_2D, texNames[8]) ; 
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(0.0, 5.0, 80.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(70.0, 5.0, 80.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(70.0, 5.0, 150.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(0.0, 5.0, 150.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(0.0, 5.0, 150.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(70.0, 5.0, 150.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(70.0, 5.0, 220.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(0.0, 5.0, 220.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(0.0, 5.0, 220.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(70.0, 5.0, 220.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(70.0, 5.0, 290.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(0.0, 5.0, 290.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(0.0, 5.0, 290.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(70.0, 5.0, 290.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(70.0, 5.0, 360.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(0.0, 5.0, 360.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(0.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(70.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(70.0, 5.0, 430.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(0.0, 5.0, 430.0);
+        glEnd();
+
+        //to the left
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(70.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(140.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(140.0, 5.0, 430.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(70.0, 5.0, 430.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(140.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(210.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(210.0, 5.0, 430.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(140.0, 5.0, 430.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(210.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(280.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(280.0, 5.0, 430.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(210.0, 5.0, 430.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(280.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(350.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(350.0, 5.0, 430.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(280.0, 5.0, 430.0);
+        glEnd();
+
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(350.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(420.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(420.0, 5.0, 430.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(350.0, 5.0, 430.0);
+        glEnd();
+
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(420.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(490.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(490.0, 5.0, 430.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(420.0, 5.0, 430.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(490.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(560.0, 5.0, 360.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(560.0, 5.0, 430.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(490.0, 5.0, 430.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(490.0, 5.0, 430.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(560.0, 5.0, 430.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(560.0, 5.0, 500.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(490.0, 5.0, 500.0);
+        glEnd();
+
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(490.0, 5.0, 500.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(560.0, 5.0, 500.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(560.0, 5.0, 570.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(490.0, 5.0, 570.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(490.0, 5.0, 570.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(560.0, 5.0, 570.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(560.0, 5.0, 640.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(490.0, 5.0, 640.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(560.0, 5.0, 570.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(630.0, 5.0, 570.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(630.0, 5.0, 640.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(560.0, 5.0, 640.0);
+        glEnd();
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(630.0, 5.0, 570.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(700.0, 5.0, 570.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(700.0, 5.0, 640.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(630.0, 5.0, 640.0);
+        glEnd();
+
+
+
+    glUniform1i(isBump, 0);
     
     // Draw Character
     if (use_char) {
