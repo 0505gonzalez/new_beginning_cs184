@@ -8,7 +8,6 @@
 #include "shaders.h"
 #include "Transform.h"
 #include <math.h>
-#include "Character.cpp"
 #include <sys/time.h>
 
 using namespace std;

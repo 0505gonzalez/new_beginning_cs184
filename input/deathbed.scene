@@ -15,7 +15,6 @@ pushTransform
 specular 1 1 1 1
 
 #Sky Dome
-
 # Floor (white but now with shading)
 # Materials first.  We don't change specular and shininess
   specular 0.5 0.5 0.5 1
@@ -74,6 +73,7 @@ specular 1 1 1 1
   ambient 0.2 0.2 0.2 1
   diffuse 1 1 1 1
   shininess 15
+  popTransform
   pushTransform
   translate 3 -2.25 0.4
         scale 0.025 4.5 1
@@ -742,6 +742,121 @@ ambient 0.2 0.2 0.2 1
 
 popTransform
 
+# Bridge
+  pushTransform
+  ambient 0.4 0.4 0.4 1
+  diffuse 0.13 0.13 0.13 1
+  specular 0.8 0.8 0.8 1
+  shininess 2
+  rotate 0 0 1 30
+  translate 4 -5 -0.1
+  rotate 0 0 1 -90
+  pushTransform
+        translate 17 0 0.01
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+  popTransform
+  pushTransform
+        translate 12.2 0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 12.2 -0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 16.8 0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 16.8 -0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+popTransform
+
 pushTransform
   ambient 0.5 0.5 0.5 1
   diffuse 0.0 0.0 0.5 1
@@ -760,5 +875,3 @@ popTransform
   pushTransform
        	character 0 1 0
   popTransform
-  
-popTransform

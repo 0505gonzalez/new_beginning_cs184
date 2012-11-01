@@ -206,7 +206,8 @@ void readfile(const char * filename) {
 
 		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || 
             cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "coffeeTable" || 
-            cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton" || cmd == "desk" || cmd == "television") {
+            cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton" || cmd == "desk" || cmd == "television" ||
+             cmd == "bridge_plank" || cmd == "bridge_post" || cmd == "fish" || cmd == "bush" || cmd == "gravestone") {
 
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
@@ -294,6 +295,31 @@ void readfile(const char * filename) {
             obj -> name = ((std::string)("television"));
             obj -> file_path = ((std::string)("images/television.obj"));
             obj -> shape_sides = 4;
+              }
+              if (cmd == "gorge") {
+            obj -> name = ((std::string)("gorge"));
+            obj -> file_path = ((std::string)("images/gorge/gorge.txt"));
+            obj -> shape_sides = 4;
+              }
+              if (cmd == "gravestone") {
+            obj -> name = ((std::string)("gravestone"));
+            obj -> file_path = ((std::string)("images/gravestone/gravestone.txt"));
+            obj -> shape_sides = 4;
+              }
+              if (cmd == "bridge_plank") {
+            obj -> name = ((std::string)("bridge_plank"));
+            obj -> file_path = ((std::string)("images/bridge/bridge_base.txt"));
+            obj -> shape_sides = 4;
+              }
+              if (cmd == "bridge_post") {
+            obj -> name = ((std::string)("bridge_post"));
+            obj -> file_path = ((std::string)("images/bridge/bridge_post.txt"));
+            obj -> shape_sides = 4;
+              }
+              if (cmd == "bush") {
+            obj -> name = ((std::string)("bush"));
+            obj -> file_path = ((std::string)("images/bush/bush.obj"));
+            obj -> shape_sides = 3;
               }
 		      ++numobjects;
 		      ++num_obj_models;
