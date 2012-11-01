@@ -184,13 +184,13 @@ void display() {
     	glEnd();
     	
         //Spiral
-    	glBindTexture (GL_TEXTURE_2D, texNames[1]) ; 
-    	glBegin(GL_QUADS);
-    		glTexCoord2f(0.0, 1.0); glVertex3f(725.0, 0.0, 765.0);
-    		glTexCoord2f(1.0, 1.0); glVertex3f(875.0, 0.0, 765.0);
-    		glTexCoord2f(1.0, 0.0); glVertex3f(875.0, 100.0, 765.0);
-    		glTexCoord2f(0.0, 0.0); glVertex3f(725.0, 100.0, 765.0);
-    	glEnd();
+        glBindTexture (GL_TEXTURE_2D, texNames[1]) ; 
+        glBegin(GL_QUADS);
+            glTexCoord2f(0.0, 1.0); glVertex3f(775.0, 0.0, 950.0);
+            glTexCoord2f(1.0, 1.0); glVertex3f(875.0, 0.0, 875.0);
+            glTexCoord2f(1.0, 0.0); glVertex3f(875.0, 100.0, 875.0);
+            glTexCoord2f(0.0, 0.0); glVertex3f(775.0, 100.0, 950.0);
+        glEnd();
     	
         //Fireplace
     	glBindTexture (GL_TEXTURE_2D, texNames[2]) ; 

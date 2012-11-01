@@ -93,7 +93,7 @@ EXTERN GLuint loadedSceneIndex;
 EXTERN GLfloat backgroundColor[4];
 
 //Obj files - since only few models on screen (20 MB limit), we can only have a few .obj models (textures are expensive). Hence, an array is suitable to store .obj vertices/texture coords/normals.
-const int max_obj_models = 12; // per scene.
+const int max_obj_models = 25; // per scene.
 EXTERN int num_obj_models;
 
 //Textures

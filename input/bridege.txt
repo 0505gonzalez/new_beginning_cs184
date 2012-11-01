@@ -1,0 +1,114 @@
+# Bridge
+  pushTransform
+  ambient 0.4 0.4 0.4 1
+  diffuse 0.13 0.13 0.13 1
+  specular 0.8 0.8 0.8 1
+  shininess 2
+  rotate 0 0 1 30
+  translate 4 -5 -0.1
+  rotate 0 0 1 -90
+  pushTransform
+        translate 17 0 0.01
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+        translate -0.13 0 0
+        bridge_plank
+  popTransform
+  pushTransform
+        translate 12.2 0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 12.2 -0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 16.8 0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+  pushTransform
+        translate 16.8 -0.85 0
+        bridge_post
+        translate 0 0 0.58
+        sphere 0.08
+  popTransform
+popTransform
