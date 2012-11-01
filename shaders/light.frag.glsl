@@ -16,6 +16,9 @@ varying vec4 myvertex ;
 uniform int isTex ;
 uniform sampler2D tex;
 
+uniform int isBump;
+uniform sampler2D normalTexture;
+
 const int numLights = 10 ; 
 uniform bool enablelighting ; // are we lighting at all (global).
 uniform vec4 lightposn[numLights] ; // positions of lights 
@@ -52,6 +55,11 @@ void main (void)
 		vec3 eyedir = normalize(eyepos - mypos) ;
 
 		vec3 normal = normalize((gl_ModelViewMatrixInverseTranspose*vec4(mynormal,0.0)).xyz) ; 
+
+        if(isBump > 0){
+            normal = 2.0 * texture2D (normalTexture, gl_TexCoord[0].st).rgb - 1.0;
+            normal = normalize (normal);
+        }
         
         //Iterate through all lights
         for(int i = 0; i < numused; i++){

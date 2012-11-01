@@ -103,14 +103,18 @@ EXTERN GLuint dirt;
 EXTERN GLubyte washington[256][256][3] ;
 EXTERN GLubyte spiral[256][256][3] ;
 EXTERN GLubyte fireplace[256][256][3] ;
-EXTERN GLuint texNames[1] ; 
+EXTERN GLuint texNames[9] ; 
 EXTERN GLuint isTex ; 
+
+EXTERN GLuint isBump ; 
 
 EXTERN GLubyte anim0[256][256][3] ;
 EXTERN GLubyte anim1[256][256][3] ;
 EXTERN GLubyte anim2[256][256][3] ;
 EXTERN GLubyte anim3[256][256][3] ;
 EXTERN GLubyte anim4[256][256][3] ;
+
+EXTERN GLubyte bump0[256][256][3] ;
 
 //Animated tex time variable
 EXTERN GLuint texAnimInterval;
