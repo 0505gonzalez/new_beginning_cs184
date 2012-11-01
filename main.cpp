@@ -69,7 +69,7 @@ void printHelp() {
     std::cout << "press 'i' to zoom the camera in.\n";
     std::cout << "press 'o' to zoom the camera out.\n";
     std::cout << "press 't' to toggle texture. \n";
-    std::cout << "press 'p' to toggle animation of fish (nature scene).\n";
+    std::cout << "press 'p' to toggle animation.\n";
     std::cout << "move with mouse to change the camera view.\n";
 }
 

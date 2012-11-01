@@ -753,6 +753,27 @@ pushTransform
       rotate 0 1 0 340
       sheep
   popTransform
+  pushTransform
+      translate -12 -18 0.19
+      scale 0.6 0.6 0.5
+      rotate 1 0 0 90
+      rotate 0 1 0 180
+      sheep
+  popTransform
+  pushTransform
+      translate -12 -15 0.19
+      scale 0.6 0.6 0.5
+      rotate 1 0 0 90
+      rotate 0 1 0 140
+      sheep
+  popTransform
+  pushTransform
+      translate -10 -19 0.19
+      scale 0.6 0.6 0.5
+      rotate 1 0 0 90
+      rotate 0 1 0 101
+      sheep
+  popTransform
 
 
 # Floor (cube)
@@ -2972,5 +2993,14 @@ pushTransform
     translate 20 19.5 0.315
     rotate 0 0 1 90
     fence_rail
+  popTransform
+  
+  #Return grave
+  ambient 0.1 0.1 0.1 1
+  diffuse 0.1 0.1 0.1 1
+  specular 0.1 0.1 0.1 1
+  pushTransform
+    translate 19 -19 0 
+    gravestone
   popTransform
 popTransform
