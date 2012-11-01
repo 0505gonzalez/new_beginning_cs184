@@ -745,3 +745,14 @@ popTransform
   popTransform
   
 popTransform
+
+# Gravestone
+pushTransform
+  ambient 0.5 0.5 0.5 1
+  diffuse 0.0 0.0 0.5 1
+  translate 0 0 -0.03
+  pushTransform
+    translate 0 1 -0.05
+	gravestone
+  popTransform
+popTransform
