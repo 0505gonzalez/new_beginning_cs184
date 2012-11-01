@@ -2,6 +2,8 @@ Computer Science 184 - Assignment 4
 
 By: Juan Gonzalez (cs184-am) and Alvin Wong (cs184-ax)
 
+WEBSITE: http://inst.cs.berkeley.edu/~cs184-am/new_beginning
+
 A New Beginning
 
 How to run the program: 
@@ -75,4 +77,4 @@ Requirements:
 Extra Credit
 1) Parametric or curved Surfaces - the river was modeled after a cosine curve, sampled at 20 points.
 2) Animated Textures - the computer in the deathbed scene shows this.
-3) Anything Else / Collision Detection (Very simple) - The nature scene has a minimal function collision detection scheme so that the character does not go off the plane or into the river. And yes, the character does have eyes.
+3) Anything Else / Collision Detection (Very simple) - The nature scene has a minimal function collision detection scheme so that the character does not go off the plane or into the river. The character animation and creation was done from scratch. And yes, the character does have eyes.
