@@ -204,7 +204,7 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || 
+		else if (cmd == "tree1"  || cmd == "horse" || cmd == "cow" || 
             cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "coffeeTable" || 
             cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton" || cmd == "desk" || cmd == "television" ||
              cmd == "bridge_plank" || cmd == "bridge_post" || cmd == "fish"  || cmd == "gravestone" || cmd == "gorge") {
@@ -230,11 +230,6 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/tree/tree4b_lod1.obj"));
 			obj -> shape_sides = 4;
 		      }
-		      if (cmd == "tree2") {
-			obj -> name = ((std::string)("tree2"));
-			obj -> file_path = ((std::string)("images/tree/tree4b_lod2.obj"));
-			obj -> shape_sides = 4;
-		      }
 		      if (cmd == "deadOak") {
 			obj -> name = ((std::string)("deadOak"));
 			obj -> file_path = ((std::string)("images/dead_tree2/tree_oak.obj"));
@@ -248,11 +243,6 @@ void readfile(const char * filename) {
 			obj -> shape_sides = 3;
 		      }
 
-		      if (cmd == "apple") {
-			obj -> name = ((std::string)("apple"));
-			obj -> file_path = ((std::string)("images/apple/apple-OBJ.obj"));
-			obj -> shape_sides = 4;
-		      }
 		      if (cmd == "horse") {
 			obj -> name = ((std::string)("horse"));
 			obj -> file_path = ((std::string)("images/horse-obj/horse-obj.obj"));
