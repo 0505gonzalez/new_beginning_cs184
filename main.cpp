@@ -304,7 +304,7 @@ void collisionProcess(){
 	     string fileName("input/paradise.scene");
 	     loadScene(fileName);
     }
-    if(char_position.y < -18 && char_position.y > -20 && char_position.x < 20 && char_position.x > 18 && loadedSceneIndex == 1){
+    if(char_position.y < -18.5 && char_position.y > -19.5 && char_position.x < 19.5 && char_position.x > 18.5 && loadedSceneIndex == 1){
        string fileName("input/deathbed.scene");
        loadScene(fileName);
     }
