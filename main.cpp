@@ -262,9 +262,7 @@ void idleFunc ( ) {
         Transform::up(amount_rot_y, eyeinit, up);
         eye = eyeinit + distance_eye_to_eyeinit;
         glutPostRedisplay();
-        if (loadedSceneIndex == 0) {
-            collisionProcess();
-        }
+         collisionProcess();
         gettimeofday(&timeStart, NULL);
     }
     
@@ -302,15 +300,19 @@ void mouse(int x, int y) {
 }
 
 void collisionProcess(){
-    if(char_position.y < -15 && char_position.x < 15 && char_position.x > 13){
-	string fileName("input/paradise.scene");
-	loadScene(fileName);
+    if(char_position.y < -17.1 && char_position.x < 15 && char_position.x > 14 && loadedSceneIndex == 0){
+	     string fileName("input/paradise.scene");
+	     loadScene(fileName);
+    }
+    if(char_position.y < -18 && char_position.y > -20 && char_position.x < 20 && char_position.x > 18 && loadedSceneIndex == 1){
+       string fileName("input/deathbed.scene");
+       loadScene(fileName);
     }
     
     glutPostRedisplay();
 }
 
-/* Initializes textures */
+/* Initializes textures */\
 void initTextures(){
   textureOn = true;
   isTex = glGetUniformLocation(shaderprogram,"isTex") ;
