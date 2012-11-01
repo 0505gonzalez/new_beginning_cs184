@@ -21,6 +21,7 @@ using namespace std;
 bool * key_states = new bool[256];
 
 bool texturedAlready = false;
+bool animate_fish = true;
 
 //Animation Variables:
 struct timeval timeStart,timeEnd,time_charStart,time_charEnd, time_skeletonStart, time_skeletonEnd, texStart, texEnd;
@@ -61,27 +62,46 @@ void reshape(int width, int height) {
 
 void printHelp() {
     std::cout << "\npress 'h' to print this message again.\n";
+    std::cout << "press 'w' to advance the character forward.\n";
+    std::cout << "press 's' to advance the character backward.\n";
+    std::cout << "press 'a' to move the character to the left.\n";
+    std::cout << "press 'd' to move the character to the right.\n";
+    std::cout << "press 'i' to zoom the camera in.\n";
+    std::cout << "press 'o' to zoom the camera out.\n";
+    std::cout << "press 't' to toggle texture. \n";
+    std::cout << "press 'p' to toggle animation of fish (nature scene).\n";
+    std::cout << "move with mouse to change the camera view.\n";
 }
 
 
 
 void keyboard(unsigned char key, int x, int y) {
     key_states[key] = true;
+    if (key == 'p') {
+        if (animate_fish) {
+            animate_fish = false;
+        } else {
+            animate_fish = true;
+        }
+    }
     
 }
 
 
 void handleAnimation() {
     gettimeofday(&time_charEnd, NULL);
-    if ((time_charEnd.tv_sec - time_charStart.tv_sec)*1000000.0+(time_charEnd.tv_usec - time_charStart.tv_usec) > 50000) {
-        if (char_frame == 6) {
-            delta_char_frame = -1;
-        } else if (char_frame == -6) {
-            delta_char_frame = 1;
+    if (animate_fish) {
+        for (int i = 0; i < numobjects; i++) {
+            if (objects[i].name == "fish") {
+                objects[i].transform = glm::transpose(Transform::translate(0,-0.02,0)) * objects[i].transform;
+                if ((objects[i].transform * glm::vec4(0,0,0,1)).y <= -20) {
+                    
+                    objects[i].transform = glm::transpose(Transform::translate(0,40,0)) * objects[i].transform;
+                }
+            }
         }
-        char_frame += delta_char_frame;
-        gettimeofday(&time_charStart, NULL);
     }
+    
 
     gettimeofday(&time_skeletonEnd, NULL);
     if((time_skeletonEnd.tv_sec - time_skeletonStart.tv_sec)*1000000.0+(time_skeletonEnd.tv_usec - time_skeletonStart.tv_usec) > 20000 && loadedSceneIndex == 0 && !pauseAnimations){
@@ -104,46 +124,118 @@ void handleAnimation() {
     }
 }
 
+void valid_character_movement(glm::vec3 old_position, glm::vec3 new_position, glm::vec3 & char_dir, char key) {
+    
+    if (loadedSceneIndex == 1) {
+        
+        // Off the board
+        if ( new_position.x < -19.8 || new_position.x > 19.8 ) {
+            if (key == 'w' || key == 's') {
+                char_dir.x = 0;
+            } 
+            if (key == 'a' || key == 'd' ) {
+                char_dir.y = 0;
+            }
+        }
+        if (new_position.y < -19.8 || new_position.y > 19.8 ) {
+            if (key == 'w' || key == 's') {
+                char_dir.y = 0;
+            } 
+            if (key == 'a' || key == 'd' ) {
+                char_dir.x = 0;
+            }
+        }
+        
+        // Handle river / water
+        if (((new_position.x > 12 && new_position.x < 17 && new_position.y > 0.8) ||  (new_position.x > 12 && new_position.x < 17 && new_position.y < -0.8)) && (old_position.y > 0.8 || old_position.y < -0.8)) {
+            if (key == 'w' || key == 's') {
+                char_dir.x = 0;
+            } 
+            if (key == 'a' || key == 'd' ) {
+                char_dir.y = 0;
+            }
+        }
+        if (((new_position.x > 12 && new_position.x < 17 && old_position.y < 0.8) && (new_position.x > 12 && new_position.x < 17 && old_position.y > -0.8))) {
+            if (new_position.y > 0.8 || new_position.y < -0.8) {
+                if (key == 'w' || key == 's') {
+                    char_dir.y = 0;
+                } 
+                if (key == 'a' || key == 'd' ) {
+                    char_dir.x = 0;
+                }
+            }   
+        }
+    }
+    
+}
 
 void idleFunc ( ) {
-
+    
     gettimeofday(&timeEnd, NULL);
     if ((timeEnd.tv_sec - timeStart.tv_sec)*1000000.0+(timeEnd.tv_usec - timeStart.tv_usec) > 33) {
-
-
+        
+        
         vec3 c_move_dir = 0.03f*glm::normalize(vec3(char_direction));
-        cout << char_position.x << " : " << char_position.y << endl;
+        //cout << char_position.x << " : " << char_position.y << endl;
         if (key_states['h']) {
             printHelp();
         }
         if (key_states[27]) { // Escape to quit                                                                                                                                                                   
             exit(0);
         }
-        if (key_states['w']) {
-            character.transform = glm::transpose(Transform::translate   (c_move_dir.x, c_move_dir.y, c_move_dir.z))*character.transform;
-            eye += c_move_dir;
-            center += c_move_dir;
-            char_position += c_move_dir;
+        if (key_states['o']) {
+            eye = center + glm::vec3(1.02*(eye.x-center.x), 1.02*(eye.y-center.y), 1.02*(eye.z-center.z));
+            eyeinit = glm::vec3(1.02*eyeinit.x, 1.02*eyeinit.y, 1.02*eyeinit.z);
+            
         }
-        if (key_states['s']) {
-            character.transform = glm::transpose(Transform::translate(-c_move_dir.x, -c_move_dir.y, -c_move_dir.z))*character.transform;
-            eye -= c_move_dir;
-            center -= c_move_dir;
-            char_position -= c_move_dir;
+        if (key_states['i']) {
+            eye = center + glm::vec3(1/1.02*(eye.x-center.x), 1/1.02*(eye.y-center.y), 1/1.02*(eye.z-center.z));
+            eyeinit = glm::vec3(1/1.02*eyeinit.x, 1/1.02*eyeinit.y, 1/1.02*eyeinit.z);
         }
-        if (key_states['a']) {
-            vec3 left_vec = vec3(-c_move_dir.y, c_move_dir.x, c_move_dir.z);
-            character.transform = glm::transpose(Transform::translate(-c_move_dir.y, c_move_dir.x, c_move_dir.z))*character.transform;
-            eye += left_vec;
-            center += left_vec;
-            char_position += left_vec;
-        }
-        if (key_states['d']) {
-            vec3 right_vec = vec3(c_move_dir.y, -c_move_dir.x, c_move_dir.z);
-            character.transform = glm::transpose(Transform::translate(c_move_dir.y, -c_move_dir.x, c_move_dir.z))*character.transform;
-            eye += right_vec;
-            center += right_vec;
-            char_position += right_vec;
+        if (key_states['w'] || key_states['a'] || key_states['s'] || key_states['d']) {
+            gettimeofday(&time_charEnd, NULL);
+            if ((time_charEnd.tv_sec - time_charStart.tv_sec)*1000000.0+(time_charEnd.tv_usec - time_charStart.tv_usec) > 50000) {
+                if (char_frame == 6) {
+                    delta_char_frame = -1;
+                } else if (char_frame == -6) {
+                    delta_char_frame = 1;
+                }
+                char_frame += delta_char_frame;
+                gettimeofday(&time_charStart, NULL);
+            }
+            if (key_states['w']) {
+                valid_character_movement(vec3(character.transform * glm::vec4(0,0,0,1)),vec3((glm::transpose(Transform::translate(c_move_dir.x, c_move_dir.y, c_move_dir.z))*character.transform * glm::vec4(0,0,0,1))), c_move_dir, 'w');
+                character.transform = glm::transpose(Transform::translate   (c_move_dir.x, c_move_dir.y, c_move_dir.z))*character.transform;
+                eye += c_move_dir;
+                center += c_move_dir;
+                char_position += c_move_dir;
+            }
+            if (key_states['s']) {
+                valid_character_movement(vec3(character.transform * glm::vec4(0,0,0,1)),vec3((glm::transpose(Transform::translate (-c_move_dir.x, -c_move_dir.y, -c_move_dir.z))*character.transform * glm::vec4(0,0,0,1))), c_move_dir, 's');
+                character.transform = glm::transpose(Transform::translate(-c_move_dir.x, -c_move_dir.y, -c_move_dir.z))*character.transform;
+                eye -= c_move_dir;
+                center -= c_move_dir;
+                char_position -= c_move_dir;
+            }
+            if (key_states['a']) {
+                valid_character_movement(vec3(character.transform * glm::vec4(0,0,0,1)),vec3((glm::transpose(Transform::translate (-c_move_dir.y, c_move_dir.x, c_move_dir.z))*character.transform * glm::vec4(0,0,0,1))), c_move_dir, 'a');
+                vec3 left_vec = vec3(-c_move_dir.y, c_move_dir.x, c_move_dir.z);
+                character.transform = glm::transpose(Transform::translate(-c_move_dir.y, c_move_dir.x, c_move_dir.z))*character.transform;
+                eye += left_vec;
+                center += left_vec;
+                char_position += left_vec;
+            }
+            if (key_states['d']) {
+                valid_character_movement(vec3(character.transform * glm::vec4(0,0,0,1)),vec3((glm::transpose(Transform::translate(c_move_dir.y, -c_move_dir.x, c_move_dir.z))*character.transform * glm::vec4(0,0,0,1))), c_move_dir, 'd');
+                vec3 right_vec = vec3(c_move_dir.y, -c_move_dir.x, c_move_dir.z);
+                character.transform = glm::transpose(Transform::translate(c_move_dir.y, -c_move_dir.x, c_move_dir.z))*character.transform;
+                eye += right_vec;
+                center += right_vec;
+                char_position += right_vec;
+            }
+        } else {
+            char_frame = 0;
+            delta_char_frame = 1;
         }
     
         distance_eye_to_eyeinit = eye - eyeinit;
@@ -170,8 +262,9 @@ void idleFunc ( ) {
         Transform::up(amount_rot_y, eyeinit, up);
         eye = eyeinit + distance_eye_to_eyeinit;
         glutPostRedisplay();
-        collisionProcess();
-        
+        if (loadedSceneIndex == 0) {
+            collisionProcess();
+        }
         gettimeofday(&timeStart, NULL);
     }
     

@@ -407,7 +407,7 @@ ambient 0.2 0.2 0.2 1
   shininess 10
   pushTransform
 	# a global translate and rotate for trees
-	translate 0 0 -0.03
+	translate 0 0 -0.1
 	rotate 1 0 0 90
 	ambient 0.1 0.1 0.1 1
 	# Many, many trees...
@@ -422,13 +422,6 @@ ambient 0.2 0.2 0.2 1
 		rotate 0 1 0 195
 		deadOak
   	popTransform
-  	pushTransform
-		translate -10.5 0 13
-		scale 0.25 0.25 0.25
-		rotate 0 1 0 45
-		deadOak
-  	popTransform
-	
 	pushTransform 
 		translate 13 0 -10
 		scale 0.35 0.35 0.30
@@ -452,12 +445,7 @@ ambient 0.2 0.2 0.2 1
 		scale 0.35 0.35 0.30
         	deadOak
   	popTransform
-  	pushTransform
-		translate -12 0 -8
-		scale 0.19 0.20 0.21
-		rotate 0 1 0 195
-		deadOak
-  	popTransform
+
   	pushTransform
 		translate -12.5 0 10
 		scale 0.25 0.25 0.25
@@ -477,12 +465,7 @@ ambient 0.2 0.2 0.2 1
 		rotate 0 1 0 195
 		deadOak
   	popTransform
-  	pushTransform
-		translate -16.5 0 10
-		scale 0.25 0.25 0.25
-		rotate 0 1 0 45
-		deadOak
-  	popTransform
+
 	
 	pushTransform 
 		translate 14 0 0
@@ -719,14 +702,14 @@ ambient 0.2 0.2 0.2 1
 	pushTransform
 		translate 8 0.45 0
 		scale 0.01 0.01 0.01
-        	skeleton
+        skeleton
+    popTransform
   popTransform
 	
 #Desk
   ambient 0.5 0.5 0.5 1
   pushTransform
-    translate 2.5 -0.2 0.5
-    rotate 1 0 0 -90
+    translate 2.5 -0.55 -0.2
     rotate 0 0 1 90
     scale 0.00075 0.00075 0.00075
           desk
@@ -734,10 +717,11 @@ ambient 0.2 0.2 0.2 1
 #TV
   ambient 0.1 0.1 0.1 1
   pushTransform
-    translate 2.5 0.35 0.55
+    translate 2.5 -0.55 0.33
+    rotate 1 0 0 90
     rotate 0 1 0 -90
     scale 0.08 0.08 0.08
-          television
+    television
   popTransform
 
 popTransform
@@ -857,6 +841,71 @@ popTransform
   popTransform
 popTransform
 
+# Gravestones
+pushTransform
+  ambient 0.5 0.5 0.5 1
+  diffuse 0.0 0.0 0.5 1
+  translate 0 0 -0.03
+  pushTransform
+	translate 0 1 -0.11
+       	gravestone
+  popTransform
+popTransform
+pushTransform
+  ambient 0.5 0.5 0.5 1
+  diffuse 0.0 0.0 0.5 1
+  translate 0 0 -0.03
+  pushTransform
+	translate 1 1 -0.11
+       	gravestone
+  popTransform
+popTransform
+pushTransform
+  ambient 0.5 0.5 0.5 1
+  diffuse 0.0 0.0 0.5 1
+  translate 0 0 -0.03
+  pushTransform
+	translate -1 1 -0.11
+       	gravestone
+  popTransform
+popTransform
+pushTransform
+  ambient 0.5 0.5 0.5 1
+  diffuse 0.0 0.0 0.5 1
+  translate 0 0 -0.03
+  pushTransform
+	translate -2 1 -0.11
+       	gravestone
+  popTransform
+popTransform
+pushTransform
+  ambient 0.5 0.5 0.5 1
+  diffuse 0.0 0.0 0.5 1
+  translate 0 0 -0.03
+  pushTransform
+	translate 2 1 -0.11
+       	gravestone
+  popTransform
+popTransform
+pushTransform
+  ambient 0.5 0.5 0.5 1
+  diffuse 0.0 0.0 0.5 1
+  translate 0 0 -0.03
+  pushTransform
+	translate 3 1 -0.11
+       	gravestone
+  popTransform
+popTransform
+pushTransform
+  ambient 0.5 0.5 0.5 1
+  diffuse 0.0 0.0 0.5 1
+  translate 0 0 -0.03
+  pushTransform
+	translate -3 1 -0.11
+       	gravestone
+  popTransform
+popTransform
+
 pushTransform
   ambient 0.5 0.5 0.5 1
   diffuse 0.0 0.0 0.5 1
@@ -873,5 +922,8 @@ popTransform
   ambient 0.5 0.5 0.5 1
   diffuse 0.0 0.0 0.5 1
   pushTransform
+        translate 0 0 -0.11
        	character 0 1 0
   popTransform
+  
+

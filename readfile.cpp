@@ -207,7 +207,7 @@ void readfile(const char * filename) {
 		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || 
             cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "coffeeTable" || 
             cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton" || cmd == "desk" || cmd == "television" ||
-             cmd == "bridge_plank" || cmd == "bridge_post" || cmd == "fish" || cmd == "bush" || cmd == "gravestone") {
+             cmd == "bridge_plank" || cmd == "bridge_post" || cmd == "fish"  || cmd == "gravestone" || cmd == "gorge") {
 
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
@@ -278,6 +278,11 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/fence/fence_rail.txt"));
 			obj -> shape_sides = 3;
 		      }
+              if (cmd == "fish") {
+            obj -> name = ((std::string)("fish"));
+            obj -> file_path = ((std::string)("images/fish/fish.obj"));
+            obj -> shape_sides = 3;
+              }
 		      if (cmd == "skeleton") {
 			obj -> name = ((std::string)("skeleton"));
 			obj -> file_path = ((std::string)("images/skeleton.obj"));
@@ -315,11 +320,6 @@ void readfile(const char * filename) {
             obj -> name = ((std::string)("bridge_post"));
             obj -> file_path = ((std::string)("images/bridge/bridge_post.txt"));
             obj -> shape_sides = 4;
-              }
-              if (cmd == "bush") {
-            obj -> name = ((std::string)("bush"));
-            obj -> file_path = ((std::string)("images/bush/bush.obj"));
-            obj -> shape_sides = 3;
               }
 		      ++numobjects;
 		      ++num_obj_models;
