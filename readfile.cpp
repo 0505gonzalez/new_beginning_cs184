@@ -204,7 +204,7 @@ void readfile(const char * filename) {
                     }
                 }
 
-		else if (cmd == "tree1" || cmd == "tree2" || cmd == "apple" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "deadTree1" || cmd == "coffeeTable" || cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton" || cmd == "gorge" || cmd == "bridge_plank" || cmd == "bridge_post") {
+		else if (cmd == "tree1" || cmd == "horse" || cmd == "cow" || cmd == "sheep" || cmd == "couch" || cmd == "deadOak" || cmd == "deadTree1" || cmd == "coffeeTable" || cmd == "fence_post" || cmd == "fence_rail" || cmd == "skeleton" || cmd == "gorge" || cmd == "bridge_plank" || cmd == "bridge_post" || cmd == "fish" || cmd == "bush") {
 
 		  if (numobjects == maxobjects) // No more objects
 		    cerr << "Reached Maximum Number of Objects " << numobjects << " Will ignore further objects\n" ;
@@ -221,15 +221,11 @@ void readfile(const char * filename) {
 		      obj -> type = modelobj;
 		      obj -> shininess = shininess;
 		      obj -> transform = transfstack.top();
+              obj -> needs_texture = false;
 
 		      if (cmd == "tree1") {
 			obj -> name = ((std::string)("tree1"));
 			obj -> file_path = ((std::string)("images/tree/tree4b_lod1.obj"));
-			obj -> shape_sides = 4;
-		      }
-		      if (cmd == "tree2") {
-			obj -> name = ((std::string)("tree2"));
-			obj -> file_path = ((std::string)("images/tree/tree4b_lod2.obj"));
 			obj -> shape_sides = 4;
 		      }
 		      if (cmd == "deadOak") {
@@ -250,12 +246,6 @@ void readfile(const char * filename) {
 			obj -> file_path = ((std::string)("images/bare_maple_tree/tree.obj"));
 			obj -> shape_sides = 4;
 		      }
-
-		      if (cmd == "apple") {
-			obj -> name = ((std::string)("apple"));
-			obj -> file_path = ((std::string)("images/apple/apple-OBJ.obj"));
-			obj -> shape_sides = 4;
-		      }
 		      if (cmd == "horse") {
 			obj -> name = ((std::string)("horse"));
 			obj -> file_path = ((std::string)("images/horse-obj/horse-obj.obj"));
@@ -270,7 +260,12 @@ void readfile(const char * filename) {
 			obj -> name = ((std::string)("sheep"));
 			obj -> file_path = ((std::string)("images/sheep/sheep.obj"));
 			obj -> shape_sides = 3;
-		      }
+              }
+              if (cmd == "fish") {
+            obj -> name = ((std::string)("fish"));
+            obj -> file_path = ((std::string)("images/fish/fish.obj"));
+            obj -> shape_sides = 3;
+              }
 		      if (cmd == "fence_post") {
 			obj -> name = ((std::string)("fence_post"));
 			obj -> file_path = ((std::string)("images/fence/fence_post.txt"));
@@ -302,6 +297,11 @@ void readfile(const char * filename) {
             obj -> name = ((std::string)("bridge_post"));
             obj -> file_path = ((std::string)("images/bridge/bridge_post.txt"));
             obj -> shape_sides = 4;
+              }
+              if (cmd == "bush") {
+            obj -> name = ((std::string)("bush"));
+            obj -> file_path = ((std::string)("images/bush/bush.obj"));
+            obj -> shape_sides = 3;
               }
 		      ++numobjects;
 		      ++num_obj_models;

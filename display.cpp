@@ -158,11 +158,15 @@ void display() {
             glIndexPointer(GL_UNSIGNED_INT, 0, object->vertex_indices);
             glNormalPointer(GL_FLOAT, 0, object->normals);
             glVertexPointer(3, GL_FLOAT, 0, object->vertices);
+            if (obj->needs_texture) {
+                
+            }
             if (object->shape == 4) {
                 glDrawElements(GL_QUADS, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
             } else if (object -> shape == 3) {
                 glDrawElements(GL_TRIANGLES, object->num_of_indices, GL_UNSIGNED_INT, object->vertex_indices);
             }
+            
             glDisableClientState(GL_INDEX_ARRAY);
             glDisableClientState(GL_VERTEX_ARRAY);
             glDisableClientState(GL_NORMAL_ARRAY);
@@ -174,7 +178,7 @@ void display() {
     glUniform1i(isTex,1) ; //Enable Texturing
     
     //Deathbed tectured objects
-    std::cout << "loaded index " << loadedSceneIndex << std::endl;
+    //std::cout << "loaded index " << loadedSceneIndex << std::endl;
     if(loadedSceneIndex == 0){
 	setTex(washington);
 	glBegin(GL_QUADS);

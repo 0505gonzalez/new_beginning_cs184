@@ -89,7 +89,7 @@ bool ModelObj::loadObj(string file_name, int shape, string name) {
   }
 
   vertices = new float[temp_vertex_indices.size()*3];
-  textures = new float[temp_texture_indices.size()*3];
+  textures = new float[temp_texture_indices.size()*2];
   normals = new float[temp_normal_indices.size()*3];
   index = 0;
   vertex_indices = new int[temp_vertex_indices.size()];

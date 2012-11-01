@@ -69,6 +69,8 @@ EXTERN struct object {
   std::string name; // only necessary for .obj files.
   std::string file_path; // only necessary for .obj files.
   int shape_sides; // either 3 for tri or 4 for quad.
+  bool needs_texture;
+  GLubyte texture[256][256][3];
 } objects[maxobjects] ;
 EXTERN object character; 
 EXTERN bool use_char;
@@ -101,7 +103,8 @@ EXTERN GLuint dirt;
 EXTERN GLubyte washington[256][256][3] ;
 EXTERN GLubyte spiral[256][256][3] ;
 EXTERN GLubyte fireplace[256][256][3] ;
-EXTERN GLuint texNames[1] ; 
+EXTERN GLubyte sheep[256][256][3];
+EXTERN GLuint texNames[25] ; 
 EXTERN GLuint isTex ; 
 
 //Used for transitioning animation
